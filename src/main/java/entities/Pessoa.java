@@ -9,11 +9,9 @@ public abstract class Pessoa {
     private String dataNascimento;
     private String cpf;
     private String matricula;
-    private String endereco;
-    private int telefone;
-    private String email;
-    private String contatoEmergencia;
-
+    private Endereco endereco;
+    private Contato contatoEmergencia;
+    private Contato contato;
 
     
     public String getNome() {
@@ -40,43 +38,37 @@ public abstract class Pessoa {
     public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
-    public String getEndereco() {
+    public Endereco getEndereco() {
         return endereco;
     }
-    public void setEndereco(String endereco) {
+    public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
-    public int getTelefone() {
-        return telefone;
-    }
-    public void setTelefone(int telefone) {
-        this.telefone = telefone;
-    }
-    public String getEmail() {
-        return email;
-    }
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    public String getContatoEmergencia() {
+    public Contato getContatoEmergencia() {
         return contatoEmergencia;
     }
-    public void setContatoEmergencia(String contatoEmergencia) {
+    public void setContatoEmergencia(Contato contatoEmergencia) {
         this.contatoEmergencia = contatoEmergencia;
     }
-    public Pessoa(String nome, String dataNascimento, String cpf, String matricula, String endereco, int telefone,
-            String email, String contatoEmergencia) {
-
+    public Contato getContato() {
+        return contato;
+    }
+    public void setContato(Contato contato) {
+        this.contato = contato;
+    }
+    public Pessoa(String nome, String dataNascimento, String cpf, String matricula, Endereco endereco,
+            Contato contatoEmergencia, Contato contato) {
         this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.cpf = cpf;
         this.matricula = matricula;
         this.endereco = endereco;
-        this.telefone = telefone;
-        this.email = email;
         this.contatoEmergencia = contatoEmergencia;
+        this.contato = contato;
     }
 
 
+    
+   
     
 }
