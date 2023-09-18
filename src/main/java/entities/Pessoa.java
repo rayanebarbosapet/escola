@@ -3,6 +3,8 @@ package entities;
 import org.springframework.core.io.support.EncodedResource;
 import org.springframework.scheduling.concurrent.ThreadPoolExecutorFactoryBean;
 
+import ch.qos.logback.core.net.LoginAuthenticator;
+
 public abstract class Pessoa {
 
     private String nome;
@@ -12,6 +14,8 @@ public abstract class Pessoa {
     private Endereco endereco;
     private Contato contatoEmergencia;
     private Contato contato;
+    private String login;
+    private String senha;
 
     
     public String getNome() {
@@ -65,6 +69,8 @@ public abstract class Pessoa {
         this.endereco = endereco;
         this.contatoEmergencia = contatoEmergencia;
         this.contato = contato;
+        this.login = login;
+        this.senha = senha;
     }
 
 
