@@ -66,7 +66,7 @@ public abstract class Pessoa {
     }
     public Pessoa(String nome, String dataNascimento, String cpf, String matricula, String endereco, int telefone,
             String email, String contatoEmergencia) {
-                
+
         this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.cpf = cpf;
