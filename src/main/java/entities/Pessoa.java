@@ -1,9 +1,6 @@
 package entities;
 
-import org.springframework.core.io.support.EncodedResource;
-import org.springframework.scheduling.concurrent.ThreadPoolExecutorFactoryBean;
-
-import ch.qos.logback.core.net.LoginAuthenticator;
+import enums.Cargo;
 
 public abstract class Pessoa {
 
@@ -16,7 +13,20 @@ public abstract class Pessoa {
     private Contato contato;
     private String login;
     private String senha;
-
+    private Cargo cargo;
+    
+    public Pessoa(String nome, String dataNascimento, String cpf, String matricula,
+            Contato contatoEmergencia, Contato contato) {
+        this.nome = nome;
+        this.dataNascimento = dataNascimento;
+        this.cpf = cpf;
+        this.matricula = matricula;
+        this.endereco = endereco;
+        this.contatoEmergencia = contatoEmergencia;
+        this.contato = contato;
+        this.login = login;
+        this.senha = senha;
+    }
     
     public String getNome() {
         return nome;
@@ -59,18 +69,6 @@ public abstract class Pessoa {
     }
     public void setContato(Contato contato) {
         this.contato = contato;
-    }
-    public Pessoa(String nome, String dataNascimento, String cpf, String matricula, Endereco endereco,
-            Contato contatoEmergencia, Contato contato) {
-        this.nome = nome;
-        this.dataNascimento = dataNascimento;
-        this.cpf = cpf;
-        this.matricula = matricula;
-        this.endereco = endereco;
-        this.contatoEmergencia = contatoEmergencia;
-        this.contato = contato;
-        this.login = login;
-        this.senha = senha;
     }
 
 
