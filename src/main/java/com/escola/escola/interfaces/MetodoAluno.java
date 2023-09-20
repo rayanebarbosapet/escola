@@ -1,4 +1,4 @@
-package interfaces;
+package com.escola.escola.interfaces;
 
 public class MetodoAluno {
     

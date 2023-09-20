@@ -1,4 +1,4 @@
-package entities;
+package com.escola.escola.entities;
 
 public abstract class Contato {
     

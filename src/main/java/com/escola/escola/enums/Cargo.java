@@ -1,4 +1,4 @@
-package enums;
+package com.escola.escola.enums;
 
 public enum Cargo {
     DIRETOR, PROFESSOR, COZINHEIRA, RECEPCIONISTA, INSPETOR, 

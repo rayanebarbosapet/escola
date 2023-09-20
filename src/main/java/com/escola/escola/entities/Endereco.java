@@ -1,4 +1,4 @@
-package entities;
+package com.escola.escola.entities;
 
 import org.springframework.expression.spel.CodeFlow.ClinitAdder;
 
