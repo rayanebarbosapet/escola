@@ -1,5 +1,4 @@
 package com.escola.escola.entities;
-import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Aluno extends Pessoa {
@@ -59,54 +58,54 @@ public class Aluno extends Pessoa {
         Aluno.listaAluno = listaAluno;
     }
 
-      @Override
-    public void fazerLogin() {
-        String login = "professor";
-        String senha = "1234";
-        String loginDigitado;
-        String senhaDigitada;
-        Scanner sc = new Scanner(System.in);
+    //   @Override
+    // public void fazerLogin() {
+    //     String login = "professor";
+    //     String senha = "1234";
+    //     String loginDigitado;
+    //     String senhaDigitada;
+    //     Scanner sc = new Scanner(System.in);
 
-        System.out.println("Infome o login:");
-        loginDigitado = sc.nextLine();
-        System.out.println("Informe a senha:");
-        senhaDigitada = sc.nextLine();
+    //     System.out.println("Infome o login:");
+    //     loginDigitado = sc.nextLine();
+    //     System.out.println("Informe a senha:");
+    //     senhaDigitada = sc.nextLine();
 
-        if(login.equals(loginDigitado) && senha.equals(senhaDigitada)){
-            System.out.println("Login Realizado com sucesso");
+    //     if(login.equals(loginDigitado) && senha.equals(senhaDigitada)){
+    //         System.out.println("Login Realizado com sucesso");
             
-        } else if (!login.equals(loginDigitado) && !senha.equals(senhaDigitada)){
-            System.out.println("Tanto o login, quanto a senha estão incorretos.");
+    //     } else if (!login.equals(loginDigitado) && !senha.equals(senhaDigitada)){
+    //         System.out.println("Tanto o login, quanto a senha estão incorretos.");
             
-        } else if (senhaDigitada != senha){
-            System.out.println("Senha incorreta.");
-        } else if (!loginDigitado.equals(login)){
-            System.out.println("Login incorreta.");
-        }
-        sc.close();
-    }
+    //     } else if (senhaDigitada != senha){
+    //         System.out.println("Senha incorreta.");
+    //     } else if (!loginDigitado.equals(login)){
+    //         System.out.println("Login incorreta.");
+    //     }
+    //     sc.close();
+    // }
 
     
-    public static void criarCadastro() {
-        String novoNome = 
+    // public static void criarCadastro() {
+    //     String novoNome = 
 
-        Aluno novoAluno = new Aluno(novoNome, dataNascimento, cpf, matricula, contatoEmergencia,
-        contato);
-        listaAluno.add(novoAluno);
-    }
-
-    
-    public void mostrarCadastro() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'mostrarCadastro'");
-    }
+    //     Aluno novoAluno = new Aluno(novoNome, dataNascimento, cpf, matricula, contatoEmergencia,
+    //     contato);
+    //     listaAluno.add(novoAluno);
+    // }
 
     
-    public static void listarAlunos() {
-        for (int i = 0; i < getListaAluno().size(); i++ ){
-            System.out.println( (i+1) + "- " + Aluno.getListaAluno().get(i).getNome());
-        }
-    }
+    // public void mostrarCadastro() {
+    //     // TODO Auto-generated method stub
+    //     throw new UnsupportedOperationException("Unimplemented method 'mostrarCadastro'");
+    // }
+
+    
+    // public static void listarAlunos() {
+    //     for (int i = 0; i < getListaAluno().size(); i++ ){
+    //         System.out.println( (i+1) + "- " + Aluno.getListaAluno().get(i).getNome());
+    //     }
+    // }
 
 
     

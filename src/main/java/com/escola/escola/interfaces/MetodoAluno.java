@@ -1,6 +1,6 @@
 package com.escola.escola.interfaces;
 
-public class MetodoAluno {
+public interface MetodoAluno {
     
     //consulta notas e faltas
 }

@@ -1,10 +1,14 @@
 package com.escola.escola.interfaces;
 
 public interface MetodoDiretor {
-    
-// inserir , editar, excluir (professor e turma), consegue ver o desempenho do professor
-/* 
-    public void inserir(){
-        System.out.println();
-    }*/
+
+    void adicinarProfessor();
+    void editarProfessor();
+    void excluirProfessor();
+    void adicinarTurma();
+    void editarTurma();
+    void excluirTurma();
+    void verDesempenhoProfessor();
+    void verMelhoresAlunos();
+
 }
