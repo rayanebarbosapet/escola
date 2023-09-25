@@ -1,8 +1,9 @@
 package com.escola.escola.interfaces;
 
+
 public interface MetodoDiretor {
 
-    void adicinarProfessor();
+    //void adicinarProfessor();
     void editarProfessor();
     void excluirProfessor();
     void adicinarTurma();

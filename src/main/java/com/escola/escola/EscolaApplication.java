@@ -3,6 +3,7 @@ package com.escola.escola;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
 @SpringBootApplication
 public class EscolaApplication {
 
@@ -24,6 +25,7 @@ public class EscolaApplication {
 
 		// Menu.menuPrincipalProf(); 
 		Login.inicio();
+	
 	}
  
 }
