@@ -12,13 +12,15 @@ public class Menu {
     private static Scanner scanner = new Scanner(System.in);
 
     public static void menuPrincipalDiretor() {
-        int escolha;
-        System.out.println("Bem vindo, Diretor(a)! \n O que deseja fazer?");
-        System.out.println(
-                "1- Adicinar Professor \n2- Editar Professor \n3- Excluir Professor \n4- Adicinar Turma \n5- Editar Turma \n6- Excluir Turma \n7- Ver Desempenho dos Professores \n8- Ver Melhores Alunos \n9- Sair");
-        escolha = scanner.nextInt();
+        int escolha = 0;
 
         while (escolha != 9) {
+            System.out.println("Bem vindo, Diretor(a)! \n O que deseja fazer?");
+            System.out.println(
+                    "1- Adicinar Professor \n2- Editar Professor \n3- Excluir Professor \n4- Adicinar Turma \n5- Editar Turma \n6- Excluir Turma \n7- Ver Desempenho dos Professores \n8- Ver Melhores Alunos \n9- Sair");
+            
+            escolha = scanner.nextInt();
+            
 
             switch (escolha) {
                 case 1:

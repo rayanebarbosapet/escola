@@ -12,50 +12,54 @@ public class Login {
     private static Scanner sc = new Scanner(System.in);
 
     public static void inicio(){
-        int opcao;
-        System.out.println("Com qual perfil deseja logar?");
-        System.out.println("1- Diretor(a) \n2- Professor(a) \n3- Aluno(a) \n4- Sair");
-        opcao = sc.nextInt();
+        int opcao=0;
+        Scanner scOpcao = new Scanner(System.in);
 
         while(opcao != 4){
+            System.out.println("Com qual perfil deseja logar?");
+            System.out.println("1- Diretor(a) \n2- Professor(a) \n3- Aluno(a) \n4- Sair");
 
-        switch(opcao){
-            case 1:
-            login = "diretor";
-            senha = "123";
-            if(fazerLogin()){
-                Menu.menuPrincipalDiretor();
+            opcao = scOpcao.nextInt();
+
+
+
+            switch(opcao){
+                case 1:
+
+                    login = "diretor";
+                    senha = "123";
+                    if(fazerLogin()){
+                        Menu.menuPrincipalDiretor();
+                    }
+                break;
+
+                case 2:
+                login = "professor";
+                senha = "456";
+                if(fazerLogin()){
+                    Menu.menuPrincipalProf();
+                }
+                break;
+
+                case 3:
+                login = "aluno";
+                senha = "789";
+                if(fazerLogin()){
+                    Menu.menuPrincipalAluno();
+                }
+                break;
+
+                case 4:
+                System.out.println("Saindo do Sistema");
+                System.exit(0);
+                break;
+
+                default:
+                System.out.println("Opção Inválida!");
+                inicio();
+                break;
             }
-            break;
-
-            case 2:
-            login = "professor";
-            senha = "456";
-            if(fazerLogin()){
-                Menu.menuPrincipalProf();
-            }
-            break;
-
-            case 3:
-            login = "aluno";
-            senha = "789";
-            if(fazerLogin()){
-                Menu.menuPrincipalAluno();
-            }
-            break;
-
-            case 4:
-            System.out.println("Saindo do Sistema");
-            System.exit(0);
-            break;
-
-            default:
-            System.out.println("Opção Inválida!");
-            inicio();
-            break;
         }
-        sc.close();
-    }
     }
 
 
