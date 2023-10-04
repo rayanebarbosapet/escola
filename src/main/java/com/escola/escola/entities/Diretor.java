@@ -43,6 +43,8 @@ public class Diretor extends Funcionario {
     }
 
     public static void editarProfessor() {
+        
+
 
     }
 
