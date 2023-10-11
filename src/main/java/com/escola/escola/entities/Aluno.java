@@ -18,4 +18,6 @@ public class Aluno extends Pessoa {
     public static ArrayList <Aluno> listaDeAluno = new ArrayList<>();
 
 
+    //public static void verNotas(){}
+
 }

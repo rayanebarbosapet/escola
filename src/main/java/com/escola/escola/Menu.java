@@ -10,12 +10,13 @@ import lombok.Data;
 @Data
 public class Menu {
     private static Scanner scanner = new Scanner(System.in);
+    private static Scanner scannerString = new Scanner(System.in);
 
     public static void menuPrincipalDiretor() {
         int escolha = 0;
 
         while (escolha != 9) {
-            Scanner scannerString = new Scanner(System.in);
+            
             System.out.println("Bem vindo, Diretor(a)! \n O que deseja fazer?");
             System.out.println(
                     "1- Adicionar professor\n2- Editar Professor \n3- Listar professores \n4- Adicinar Turma \n5- Editar Turma \n6- Excluir Turma \n7- Ver Melhores Alunos \n8- Sair");
@@ -75,6 +76,7 @@ public class Menu {
     }
 
     public static void menuPrincipalProf() {
+        
         int escolha;
         System.out.println("Bem vindo, Professor(a)! \n O que deseja fazer?");
         System.out.println("1- Adicinar Aluno \n2- Editar Aluno \n3- Excluir Aluno \n4- Listar suas Turmas \n5- Sair");

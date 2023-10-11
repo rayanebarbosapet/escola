@@ -58,6 +58,7 @@ public class Professor extends Funcionario {
 
         System.out.println("Qual aluno deseja editar?");
         listarAlunos();
+
         numeroDoAluno = scannerInt.nextInt();
 
         while (escolha != 4) {
@@ -119,6 +120,8 @@ public class Professor extends Funcionario {
 
     public static void listarTurma() {
 
+        // etodo que olha o numero do index do professor e o da turma ; pegaria o index da turma e acharia os alunos
+    System.out.println(Turma.listaDeTurmas);
     }
 
     public static void trocarNomeDoAluno() {
@@ -184,12 +187,14 @@ public class Professor extends Funcionario {
 
     }
 
-    public static void imprimirStatusDosAlunos() {
+    public static void imprimirStatusDosAlunos() {//passaria a imprimirStatusDoAluno
         Float media;
 
         for (int i = 0; i < Aluno.listaDeAluno.size(); i++) {
             media = (Aluno.listaDeAluno.get(i).getNota1() + Aluno.listaDeAluno.get(i).getNota2()) / 2;
             Aluno.listaDeAluno.get(i).setMedia(media);
+            //tem que colocar a nota de todos os alunos, se não da erro. ele não divide por 2 nota null. da erro.
+            //sugestão dois status um para todos os aluno que não divida por 2 e um para o aluno pesquisado.
 
             if (media < 5) {
                 Aluno.listaDeAluno.get(i).setStatus("Reprovado");
@@ -199,9 +204,11 @@ public class Professor extends Funcionario {
 
             System.out.println("Aluno: " + Aluno.listaDeAluno.get(i).getNome());
             System.out.println("Nota 1: " + Aluno.listaDeAluno.get(i).getNota1() + " | Nota 2: "
-                    + Aluno.listaDeAluno.get(i).getNota2());
+                    + Aluno.listaDeAluno.get(i).getNota2());//onde tem get(i) passaria a get(numeroDoAluno)
             System.out.println("Média Final: " + Aluno.listaDeAluno.get(i).getMedia() + " | Status: "
                     + Aluno.listaDeAluno.get(i).getStatus());
+                    //desde o começo do menu o get é "numeroDoAluno" e aqui esta como i o codigo quebra.
+                    //eu acredito que como começamos com numeroDoAluno que a gente continue.
 
         }
     }
