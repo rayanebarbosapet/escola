@@ -7,7 +7,15 @@ import lombok.Data;
 @Data
 public class Turma {
     private String nome;
-    static ArrayList<Turma> listaDeTurmas = new ArrayList<>();
+    public static ArrayList<Turma> listaDeTurmas = new ArrayList<>();
+
+
+    public static void listarTurmasExistentes(){
+        System.out.println("-----TURMAS-----");
+        for(int i = 0; i < listaDeTurmas.size(); i++){
+            System.out.println(i + " - " + listaDeTurmas.get(i).getNome());
+        }
+    }
     
 // materia- criar enum com as materias .
 

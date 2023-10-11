@@ -10,16 +10,17 @@ public class Diretor extends Funcionario {
 
     public static void adicinarProfessor() {
         String nome;
-        String cpf;
+        int numeroDaTurma;
 
         System.out.println("Informe o nome do professor que deseja adicionar:");
         nome = scannerString.nextLine();
-        System.out.println("Informe o cpf: ");
-        cpf = scannerString.nextLine();
+        System.out.println("Em qual turma deseja adicioná-lo? ");
+        Turma.listarTurmasExistentes();
+        numeroDaTurma = scannerInt.nextInt();
 
         Professor novoProfessor = new Professor();
         novoProfessor.setNome(nome);
-        novoProfessor.setCpf(cpf);
+        novoProfessor.setTurma(Turma.listaDeTurmas.get(numeroDaTurma));
         Professor.listaDeProfessores.add(novoProfessor);
 
         System.out.println("Deseja adicionar outro professor? s/n");
@@ -35,16 +36,15 @@ public class Diretor extends Funcionario {
     }
 
     public static void listarProfessores() {
-        System.out.println("-----------------------------------\n PROFESSORES\n");
+        System.out.println("-----PROFESSORES-----");
         for (int i = 0; i < Professor.listaDeProfessores.size(); i++) {
-            System.out.println(i + "- " + Professor.listaDeProfessores.get(i).getNome());
+            System.out.println(i + " - " + Professor.listaDeProfessores.get(i).getNome() + " - "
+                    + Professor.listaDeProfessores.get(i).getTurma());
         }
 
     }
 
     public static void editarProfessor() {
-        
-
 
     }
 
@@ -59,6 +59,10 @@ public class Diretor extends Funcionario {
             }
 
         }
+
+        System.out.println("-----LISTA ATUALIZADA-----");
+
+        listarProfessores();
     }
 
     public static void adicinarTurma() {
@@ -77,16 +81,7 @@ public class Diretor extends Funcionario {
         if (escolha.equals("s")) {
             adicinarTurma();
         } else {
-            listarTurma();
-            Menu.menuPrincipalDiretor();
-        }
-
-    }
-
-    public static void listarTurma() {
-        System.out.println("-----------------------------------\n TURMAS\n");
-        for (int i = 0; i < Turma.listaDeTurmas.size(); i++) {
-            System.out.println(i + "- " + Turma.listaDeTurmas.get(i).getNome());
+            Turma.listarTurmasExistentes();
         }
 
     }
@@ -95,32 +90,23 @@ public class Diretor extends Funcionario {
         String novoNome;
         int numeroDaTurma;
 
-        listarTurma();
+        Turma.listarTurmasExistentes();
         System.out.println("Informe o número da turma que deseja editar: ");
         numeroDaTurma = scannerInt.nextInt();
         System.out.println("Informe o novo nome da turma: ");
         novoNome = scannerString.nextLine();
 
-        for (int i = 0; i < Turma.listaDeTurmas.size(); i++) {
-            if (i == numeroDaTurma) {
-                Turma.listaDeTurmas.get(i).setNome(novoNome);
-            }
-
-        }
+        Turma.listaDeTurmas.get(numeroDaTurma).setNome(novoNome);
     }
 
     public static void excluirTurma() {
-        listarTurma();
+        
         int numeroDaTurma;
+
+        Turma.listarTurmasExistentes();
         System.out.println("Informe o número da turma que deseja excluir: ");
         numeroDaTurma = scannerInt.nextInt();
-        for (int i = 0; i < Turma.listaDeTurmas.size(); i++) {
-            if (i == numeroDaTurma) {
-                Turma.listaDeTurmas.remove(numeroDaTurma);
-            }
-
-        }
-
+        Turma.listaDeTurmas.remove(numeroDaTurma);
     }
 
     public static void verDesempenhoProfessor() {
@@ -128,6 +114,8 @@ public class Diretor extends Funcionario {
     }
 
     public static void verMelhoresAlunos() {
+
+        //Bubblesort de alunos com as  melhores médias
 
     }
 }

@@ -6,27 +6,39 @@ import java.util.Scanner;
 import com.escola.escola.Menu;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class Professor extends Funcionario {
-    private static Scanner scfloat = new Scanner(System.in);
-    private static Scanner sc = new Scanner(System.in);
+    private Turma turma;
+    public static ArrayList<Professor> listaDeProfessores = new ArrayList<>();
+
+    private static int numeroDoAluno;
+    private static Scanner scannerFloat = new Scanner(System.in);
     private static Scanner scannerString = new Scanner(System.in);
     private static Scanner scannerInt = new Scanner(System.in);
-    static ArrayList<Professor> listaDeProfessores = new ArrayList<>();
+
+    public static void listarAlunos() {
+        System.out.println("-----------------------------------\n ALUNOS\n");
+        for (int i = 0; i < Aluno.listaDeAluno.size(); i++) {
+            System.out.println(i + "- " + Aluno.listaDeAluno.get(i).getNome());
+        }
+    }
 
     public static void adicionarAluno() {
         String nome;
-        String cpf;
+        int numeroDaTurma;
 
         System.out.println("Informe o nome do aluno que deseja adicionar:");
         nome = scannerString.nextLine();
-        System.out.println("Informe o cpf: ");
-        cpf = scannerString.nextLine();
+        System.out.println("Informe em qual turma deseja adicioná-lo:");
+        Turma.listarTurmasExistentes();
+        numeroDaTurma = scannerInt.nextInt();
 
         Aluno novoAluno = new Aluno();
         novoAluno.setNome(nome);
-        novoAluno.setCpf(cpf);
+        novoAluno.setTurma(Turma.listaDeTurmas.get(numeroDaTurma));
         Aluno.listaDeAluno.add(novoAluno);
 
         System.out.println("Deseja adicionar outro aluno? s/n");
@@ -41,111 +53,63 @@ public class Professor extends Funcionario {
 
     }
 
-    public static void listarAlunos() {
-        System.out.println("-----------------------------------\n ALUNOS\n");
-        for (int i = 0; i < Aluno.listaDeAluno.size(); i++) {
-            System.out.println(i + "- " + Aluno.listaDeAluno.get(i).getNome());
-        }
-    }
-   
-    //   }
-  
-
     public static void editarAluno() {
-        listarAlunos();
-        Turma novaTurma;
-        String novoNome;
         int escolha = 0;
-        int numeroAluno;
-        Float nota1;
-        Float nota2;
-        Float nota3;
-        System.out.println("qual aluno deseja editar?");
-        numeroAluno = scannerInt.nextInt();
-       
+
+        System.out.println("Qual aluno deseja editar?");
+        listarAlunos();
+        numeroDoAluno = scannerInt.nextInt();
+
         while (escolha != 4) {
-            
-            System.out.println("o que deseja editar?");
+
+            System.out.println("O que deseja fazer?");
             System.out.println(
-                    "1- nome do aluno \n2- turma do aluno \n3- nota do aluno \n4- recuperação\n5- Sair");
-            
+                    "1- Editar nome do aluno \n2- Trocar turma do aluno \n3- Adicionar notas do aluno \n4- Adicionar faltas do aluno \n5- Adicionar nota de recuperação \n6- Ver status dos alunos \n7- Voltar para o menu principal");
             escolha = scannerInt.nextInt();
-            
 
             switch (escolha) {
                 case 1:
-                System.out.println("qual o novo nome?");
-                novoNome = scannerString.nextLine();
-                Aluno.listaDeAluno.get(numeroAluno).setNome(novoNome);
-                break;
+                    trocarNomeDoAluno();
+                    break;
 
                 case 2:
-                // System.out.println("qual a nova turma?");
-                // novaTurma = sc.nextLine();
-                // Aluno.listaDeAluno.get(numeroAluno).setTurma(novaTurma); 
-                
-                break;
+                    trocarTurmaDoAluno();
+                    break;
 
-                case 3: 
-                System.out.println("informe nota 01:");
-                nota1 = scfloat.nextFloat();
-                Aluno.listaDeAluno.get(numeroAluno).setNota1(nota1);
-
-                System.out.println("informe nota 02:");
-                nota2 = scfloat.nextFloat();
-                Aluno.listaDeAluno.get(numeroAluno).setNota2(nota2);
-
-               
-                break;
+                case 3:
+                    adicionarNotas();
+                    break;
 
                 case 4:
-                System.out.println("informe a nota de recuperação:");
-                nota3 = scfloat.nextFloat();
-                if ((Aluno.listaDeAluno.get(numeroAluno).getNota1()) > (Aluno.listaDeAluno.get(numeroAluno).getNota2()) ){
-                    if ((Aluno.listaDeAluno.get(numeroAluno).getNota2()) < (nota3) ){
-                        Aluno.listaDeAluno.get(numeroAluno).setNota2(nota3);
-                    }
-                }
-                break;
+                    adicionarFaltas();
+                    break;
 
                 case 5:
-                System.out.println("saindo");
-                break;
-                 default:
-                 System.out.println("opção inválida");
-                 break;
+                    adicionarNotaDeRecuperacao();
+                    break;
 
+                case 6:
+                    imprimirStatusDosAlunos();
+                    break;
+
+                case 7:
+                    Menu.menuPrincipalProf();
+                    break;
+
+                default:
+                    System.out.println("Opção inválida");
+                    break;
             }
-
-
-
-         //  numeroAluno = parseInt(
-    //     prompt("Informe o número aluno: \n\n\n" + listaCompleta)
-    //   ); //pega o índice do aluno 
-    //   let nota1 = parseFloat(prompt("Informe a primeira nota:")); // Lê nota 1
-    //   let nota2 = parseFloat(prompt("Informe a segunda nota: ")); //Lê nota 2
-    //   let media = (nota1 + nota2) / 2; //Calcula média automaticamente
-    //   let status;
-  
-    //     //Diz se o aluno foi aprovado ou não de acordo com a média:
-    //     //Menor que 5 é Reprovado, entre 5 e 7 está de Recuperação, maior que 7 está Aprovado
-    //   if (media < 5) {
-    //     status = "Reprovado";
-    //   } else if (media >= 5 && media < 7) {
-    //     status = "De Recuperação";
-    //   } else {
-    //     status = "Aprovado";
-
+        }
     }
-}
 
-    public static void excluirAluno(){
+    public static void excluirAluno() {
         listarAlunos();
         int numeroDoAluno;
         System.out.println("Informe o número do aluno que deseja excluir: ");
         numeroDoAluno = scannerInt.nextInt();
         for (int i = 0; i < Aluno.listaDeAluno.size(); i++) {
-            if (i ==numeroDoAluno) {
+            if (i == numeroDoAluno) {
                 Aluno.listaDeAluno.remove(numeroDoAluno);
             }
 
@@ -153,8 +117,93 @@ public class Professor extends Funcionario {
 
     }
 
-    public static void listarTurma(){
-        
+    public static void listarTurma() {
+
+    }
+
+    public static void trocarNomeDoAluno() {
+        String novoNome;
+        System.out.println("Qual o novo nome?");
+        novoNome = scannerString.nextLine();
+        Aluno.listaDeAluno.get(numeroDoAluno).setNome(novoNome);
+
+    }
+
+    public static void trocarTurmaDoAluno() {
+        int numeroDaNovaTurma;
+        Turma.listarTurmasExistentes();
+        System.out.println("Para qual turma deseja mudar  aluno?");
+        numeroDaNovaTurma = scannerInt.nextInt();
+        Aluno.listaDeAluno.get(numeroDoAluno).setTurma(Turma.listaDeTurmas.get(numeroDaNovaTurma));
+    }
+
+    public static void adicionarNotas() {
+        Float nota1;
+        Float nota2;
+
+        System.out.println("Informe nota 01:");
+        nota1 = scannerFloat.nextFloat();
+        Aluno.listaDeAluno.get(numeroDoAluno).setNota1(nota1);
+
+        System.out.println("Informe nota 02:");
+        nota2 = scannerFloat.nextFloat();
+        Aluno.listaDeAluno.get(numeroDoAluno).setNota2(nota2);
+    }
+
+    public static void adicionarFaltas() {
+        int numeroDeFaltasAdicionais;
+        int faltasJaRegistradas = Aluno.listaDeAluno.get(numeroDoAluno).getNumerodeFaltas();
+        System.out.println("Quantas faltas deseja adicionar?");
+        numeroDeFaltasAdicionais = scannerInt.nextInt();
+        Aluno.listaDeAluno.get(numeroDoAluno).setNumerodeFaltas(faltasJaRegistradas + numeroDeFaltasAdicionais);
+
+    }
+
+    public static void adicionarNotaDeRecuperacao() {
+        Float nota3;
+        System.out.println("Informe a nota de recuperação:");
+        nota3 = scannerFloat.nextFloat();
+
+        if (Aluno.listaDeAluno.get(numeroDoAluno).getNota1() < Aluno.listaDeAluno.get(numeroDoAluno).getNota2()) {
+            if (Aluno.listaDeAluno.get(numeroDoAluno).getNota1() < nota3) {
+                Aluno.listaDeAluno.get(numeroDoAluno).setNota1(nota3);
+                System.out.println("A nota 1 foi substituída pela nota de recuperação");
+            } else {
+                System.out.println(
+                        "A nota de recuperação é menor do que as notas registradas, portanto não será substituída");
+            }
+        } else {
+            if (Aluno.listaDeAluno.get(numeroDoAluno).getNota2() < nota3) {
+                Aluno.listaDeAluno.get(numeroDoAluno).setNota2(nota3);
+                System.out.println("A nota 2 foi substituída pela nota de recuperação");
+            } else {
+                System.out.println(
+                        "A nota de recuperação é menor do que as notas registradas, portanto não será substituída");
+            }
+        }
+
+    }
+
+    public static void imprimirStatusDosAlunos() {
+        Float media;
+
+        for (int i = 0; i < Aluno.listaDeAluno.size(); i++) {
+            media = (Aluno.listaDeAluno.get(i).getNota1() + Aluno.listaDeAluno.get(i).getNota2()) / 2;
+            Aluno.listaDeAluno.get(i).setMedia(media);
+
+            if (media < 5) {
+                Aluno.listaDeAluno.get(i).setStatus("Reprovado");
+            } else {
+                Aluno.listaDeAluno.get(i).setStatus("Aprovado");
+            }
+
+            System.out.println("Aluno: " + Aluno.listaDeAluno.get(i).getNome());
+            System.out.println("Nota 1: " + Aluno.listaDeAluno.get(i).getNota1() + " | Nota 2: "
+                    + Aluno.listaDeAluno.get(i).getNota2());
+            System.out.println("Média Final: " + Aluno.listaDeAluno.get(i).getMedia() + " | Status: "
+                    + Aluno.listaDeAluno.get(i).getStatus());
+
+        }
     }
 
 }
