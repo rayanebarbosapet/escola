@@ -68,12 +68,15 @@ public class Menu {
     }
 
     public static void menuPrincipalProf() {
-        int escolha;
+        int escolha = 0;
+        
+        while (escolha != 5) {
+
         System.out.println("Bem vindo, Professor(a)! \n O que deseja fazer?");
         System.out.println("1- Adicinar Aluno \n2- Editar Aluno \n3- Excluir Aluno \n4- Listar suas Turmas \n5- Sair");
         escolha = scanner.nextInt();
 
-        while (escolha != 5) {
+        
 
             switch (escolha) {
                 case 1:
@@ -94,6 +97,7 @@ public class Menu {
 
                 case 5:
                     System.out.println("Saindo do Sistema");
+                    Login.inicio();
                     break;
 
                 default:

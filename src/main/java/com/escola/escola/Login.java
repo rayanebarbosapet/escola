@@ -11,60 +11,56 @@ public class Login {
     private static Scanner scanner = new Scanner(System.in);
     private static Scanner sc = new Scanner(System.in);
 
-    public static void inicio(){
-        int opcao=0;
+    public static void inicio() {
+        int opcao = 0;
         Scanner scOpcao = new Scanner(System.in);
 
-        while(opcao != 4){
+        while (opcao != 4) {
             System.out.println("Com qual perfil deseja logar?");
             System.out.println("1- Diretor(a) \n2- Professor(a) \n3- Aluno(a) \n4- Sair");
 
             opcao = scOpcao.nextInt();
 
-
-
-            switch(opcao){
+            switch (opcao) {
                 case 1:
 
                     login = "diretor";
                     senha = "123";
-                    if(fazerLogin()){
+                    if (fazerLogin()) {
                         Menu.menuPrincipalDiretor();
                     }
-                break;
+                    break;
 
                 case 2:
-                login = "professor";
-                senha = "456";
-                if(fazerLogin()){
-                    Menu.menuPrincipalProf();
-                }
-                break;
+                    login = "professor";
+                    senha = "456";
+                    if (fazerLogin()) {
+                        Menu.menuPrincipalProf();
+                    }
+                    break;
 
                 case 3:
-                login = "aluno";
-                senha = "789";
-                if(fazerLogin()){
-                    Menu.menuPrincipalAluno();
-                }
-                break;
+                    login = "aluno";
+                    senha = "789";
+                    if (fazerLogin()) {
+                        Menu.menuPrincipalAluno();
+                    }
+                    break;
 
                 case 4:
-                System.out.println("Saindo do Sistema");
-                System.exit(0);
-                break;
+                    System.out.println("Saindo do Sistema");
+                    System.exit(0);
+                    break;
 
                 default:
-                System.out.println("Opção Inválida!");
-                inicio();
-                break;
+                    System.out.println("Opção Inválida!");
+                    inicio();
+                    break;
             }
         }
     }
 
-
-
-    private static boolean fazerLogin(){
+    private static boolean fazerLogin() {
         String loginDigitado;
         String senhaDigitada;
 
@@ -73,26 +69,26 @@ public class Login {
         System.out.println("Informe a senha:");
         senhaDigitada = scanner.nextLine();
 
-        if(login.equals(loginDigitado) && senha.equals(senhaDigitada)){
+        if (login.equals(loginDigitado) && senha.equals(senhaDigitada)) {
             System.out.println("Login Realizado com sucesso");
             return true;
 
-        } else if (!login.equals(loginDigitado) && !senha.equals(senhaDigitada)){
+        } else if (!login.equals(loginDigitado) && !senha.equals(senhaDigitada)) {
             System.out.println("Tanto o login, quanto a senha estão incorretos.");
-            return false;  
-            
-        } else if (!senha.equals(senhaDigitada)){
+            return false;
+
+        } else if (!senha.equals(senhaDigitada)) {
             System.out.println("Senha incorreta.");
             return false;
 
-        } else if (!loginDigitado.equals(login)){
+        } else if (!loginDigitado.equals(login)) {
             System.out.println("Login incorreta.");
             return false;
         }
 
         scanner.close();
         return false;
-        
-     }
-    
+
+    }
+
 }

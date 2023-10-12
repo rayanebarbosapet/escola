@@ -185,13 +185,11 @@ public class Professor extends Funcionario {
     }
 
     public static void imprimirStatusDosAlunos() {
-        Float media;
+
+        Aluno.calcularMedia();
 
         for (int i = 0; i < Aluno.listaDeAluno.size(); i++) {
-            media = (Aluno.listaDeAluno.get(i).getNota1() + Aluno.listaDeAluno.get(i).getNota2()) / 2;
-            Aluno.listaDeAluno.get(i).setMedia(media);
-
-            if (media < 5) {
+            if (Aluno.listaDeAluno.get(i).getMedia() < 5) {
                 Aluno.listaDeAluno.get(i).setStatus("Reprovado");
             } else {
                 Aluno.listaDeAluno.get(i).setStatus("Aprovado");
@@ -202,8 +200,9 @@ public class Professor extends Funcionario {
                     + Aluno.listaDeAluno.get(i).getNota2());
             System.out.println("Média Final: " + Aluno.listaDeAluno.get(i).getMedia() + " | Status: "
                     + Aluno.listaDeAluno.get(i).getStatus());
+            System.out.println("\n ---------------------------------------------------------\n");
 
         }
-    }
 
+    }
 }

@@ -100,7 +100,7 @@ public class Diretor extends Funcionario {
     }
 
     public static void excluirTurma() {
-        
+
         int numeroDaTurma;
 
         Turma.listarTurmasExistentes();
@@ -115,7 +115,49 @@ public class Diretor extends Funcionario {
 
     public static void verMelhoresAlunos() {
 
-        //Bubblesort de alunos com as  melhores médias
+        Aluno variavelAuxiliar = new Aluno();
 
+        Aluno.calcularMedia();
+
+        // Bubblesort de alunos com as melhores médias
+        for (int i = 0; i < Aluno.listaDeAluno.size(); i++) {
+            for (int j = 0; j < (Aluno.listaDeAluno.size()) - 1; j++) {
+                if (Aluno.listaDeAluno.get(j).getMedia() < Aluno.listaDeAluno.get(j + 1).getMedia()) {
+                    variavelAuxiliar = Aluno.listaDeAluno.get(j);
+                    Aluno.listaDeAluno.set(j, Aluno.listaDeAluno.get(j + 1));
+                    Aluno.listaDeAluno.set(j + 1, variavelAuxiliar);
+                }
+            }
+        }
+
+        System.out.println("\n-------------------------------------------------------------\n");
+        System.out.println("Top 3 - Alunos com as melhores médias");
+
+        if (Aluno.listaDeAluno.get(0).getMedia() == 0) {
+            System.out.println("1° - Não há aluno elegível para esta posição");
+        } else {
+            System.out.println("1° - " + Aluno.listaDeAluno.get(0).getNome() + " | Média: "
+                    + Aluno.listaDeAluno.get(0).getMedia());
+        }
+
+        if (Aluno.listaDeAluno.get(1).getMedia() == 0) {
+            System.out.println("2° - Não há aluno elegível para esta posição");
+        } else {
+            System.out.println(
+                    "2° - " + Aluno.listaDeAluno.get(1).getNome() + " | Média: "
+                            + Aluno.listaDeAluno.get(1).getMedia());
+        }
+
+        if (Aluno.listaDeAluno.get(2).getMedia() == 0) {
+            System.out.println("3° - Não há aluno elegível para esta posição");
+
+        } else {
+
+            System.out.println(
+                    "3° - " + Aluno.listaDeAluno.get(2).getNome() + " | Média: "
+                            + Aluno.listaDeAluno.get(2).getMedia());
+        }
+
+        System.out.println("\n-------------------------------------------------------------\n");
     }
 }

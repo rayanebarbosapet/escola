@@ -121,8 +121,10 @@ public class EscolaApplication {
 		Aluno.listaDeAluno.add(aluno11);
 		Aluno.listaDeAluno.add(aluno12);
 
-		//Login.inicio();
-		Diretor.adicinarProfessor();
+		Login.inicio();
+		//Diretor.adicinarProfessor();
+
+		//Professor.imprimirStatusDosAlunos();
 
 	}
 
