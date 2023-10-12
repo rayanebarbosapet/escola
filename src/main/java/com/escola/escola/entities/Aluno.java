@@ -11,7 +11,7 @@ public class Aluno extends Pessoa {
 
     private Float nota1 = (float) 0;
     private Float nota2 = (float) 0;
-    private Float media;
+    private Float media = (float) 0;
     private int numerodeFaltas;
     private String status;
     private Turma turma;

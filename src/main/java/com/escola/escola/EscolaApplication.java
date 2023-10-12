@@ -63,10 +63,12 @@ public class EscolaApplication {
 		Aluno aluno1 = new Aluno();
 		aluno1.setNome("Rayane");
 		aluno1.setTurma(turma2);
+		aluno1.setNota1((float) 10);
 
 		Aluno aluno2 = new Aluno();
 		aluno2.setNome("Danielle");
 		aluno2.setTurma(turma1);
+		aluno2.setNota2((float) 5);
 
 		Aluno aluno3 = new Aluno();
 		aluno3.setNome("Duda");
@@ -121,10 +123,12 @@ public class EscolaApplication {
 		Aluno.listaDeAluno.add(aluno11);
 		Aluno.listaDeAluno.add(aluno12);
 
-		Login.inicio();
+		//Login.inicio();
 		//Diretor.adicinarProfessor();
 
 		//Professor.imprimirStatusDosAlunos();
+
+		Turma.calcularMediaDaTurma();
 
 	}
 
