@@ -7,6 +7,7 @@ import com.escola.escola.Menu;
 public class Diretor extends Funcionario {
     private static Scanner scannerString = new Scanner(System.in);
     private static Scanner scannerInt = new Scanner(System.in);
+    private static int numeroDoProfessor;
 
     public static void adicinarProfessor() {
         String nome;
@@ -41,10 +42,42 @@ public class Diretor extends Funcionario {
             System.out.println(i + " - " + Professor.listaDeProfessores.get(i).getNome() + " - "
                     + Professor.listaDeProfessores.get(i).getTurma());
         }
-
+        
     }
 
     public static void editarProfessor() {
+        int escolha = 0;
+
+        System.out.println("Qual professor deseja editar?");
+        listarProfessores();
+        numeroDoProfessor = scannerInt.nextInt();
+
+        while (escolha != 4) {
+
+            System.out.println("O que deseja fazer?");
+            System.out.println(
+                    "1- Excluir professor \n2- Ver desempenho professor \n3- voltar ");
+            escolha = scannerInt.nextInt();
+
+            switch (escolha) {
+                case 1:
+                    excluirProfessor();
+
+                    break;
+
+                case 2:
+                    verDesempenhoProfessor();
+                    break;
+
+                case 3:
+                    Menu.menuPrincipalDiretor();
+                    break;
+
+                default:
+                    System.out.println("Opção inválida");
+                    break;
+            }
+        }
 
     }
 

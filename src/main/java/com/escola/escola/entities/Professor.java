@@ -58,6 +58,7 @@ public class Professor extends Funcionario {
 
         System.out.println("Qual aluno deseja editar?");
         listarAlunos();
+
         numeroDoAluno = scannerInt.nextInt();
 
         while (escolha != 4) {
@@ -119,6 +120,8 @@ public class Professor extends Funcionario {
 
     public static void listarTurma() {
 
+        // etodo que olha o numero do index do professor e o da turma ; pegaria o index da turma e acharia os alunos
+    System.out.println(Turma.listaDeTurmas);
     }
 
     public static void trocarNomeDoAluno() {
@@ -197,7 +200,7 @@ public class Professor extends Funcionario {
 
             System.out.println("Aluno: " + Aluno.listaDeAluno.get(i).getNome());
             System.out.println("Nota 1: " + Aluno.listaDeAluno.get(i).getNota1() + " | Nota 2: "
-                    + Aluno.listaDeAluno.get(i).getNota2());
+                    + Aluno.listaDeAluno.get(i).getNota2());//onde tem get(i) passaria a get(numeroDoAluno)
             System.out.println("Média Final: " + Aluno.listaDeAluno.get(i).getMedia() + " | Status: "
                     + Aluno.listaDeAluno.get(i).getStatus());
             System.out.println("\n ---------------------------------------------------------\n");
