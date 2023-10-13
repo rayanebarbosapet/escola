@@ -123,12 +123,12 @@ public class EscolaApplication {
 		Aluno.listaDeAluno.add(aluno11);
 		Aluno.listaDeAluno.add(aluno12);
 
-		//Login.inicio();
+		Login.inicio();
 		//Diretor.adicinarProfessor();
 
 		//Professor.imprimirStatusDosAlunos();
 
-		Turma.calcularMediaDaTurma();
+		//Turma.calcularMediaDaTurma();
 
 	}
 
