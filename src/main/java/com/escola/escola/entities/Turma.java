@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class Turma {
     private String nome;
-    private Float somaMediaAlunosDaTurma = (float) 0;
+    private Double somaMediaAlunosDaTurma = 0.0;
     public static ArrayList<Turma> listaDeTurmas = new ArrayList<>();
 
     public static void listarTurmasExistentes() {

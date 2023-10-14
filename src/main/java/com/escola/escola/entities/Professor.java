@@ -15,7 +15,7 @@ public class Professor extends Funcionario {
     public static ArrayList<Professor> listaDeProfessores = new ArrayList<>();
 
     private static int numeroDoAluno;
-    private static Scanner scannerFloat = new Scanner(System.in);
+    private static Scanner scannerDouble = new Scanner(System.in);
     private static Scanner scannerString = new Scanner(System.in);
     private static Scanner scannerInt = new Scanner(System.in);
 
@@ -141,15 +141,15 @@ public class Professor extends Funcionario {
     }
 
     public static void adicionarNotas() {
-        Float nota1;
-        Float nota2;
+        Double nota1;
+        Double nota2;
 
         System.out.println("Informe nota 01:");
-        nota1 = scannerFloat.nextFloat();
+        nota1 = scannerDouble.nextDouble();
         Aluno.listaDeAluno.get(numeroDoAluno).setNota1(nota1);
 
         System.out.println("Informe nota 02:");
-        nota2 = scannerFloat.nextFloat();
+        nota2 = scannerDouble.nextDouble();
         Aluno.listaDeAluno.get(numeroDoAluno).setNota2(nota2);
     }
 
@@ -163,9 +163,9 @@ public class Professor extends Funcionario {
     }
 
     public static void adicionarNotaDeRecuperacao() {
-        Float nota3;
+        Double nota3;
         System.out.println("Informe a nota de recuperação:");
-        nota3 = scannerFloat.nextFloat();
+        nota3 = scannerDouble.nextDouble();
 
         if (Aluno.listaDeAluno.get(numeroDoAluno).getNota1() < Aluno.listaDeAluno.get(numeroDoAluno).getNota2()) {
             if (Aluno.listaDeAluno.get(numeroDoAluno).getNota1() < nota3) {
