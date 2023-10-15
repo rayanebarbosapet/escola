@@ -10,6 +10,8 @@ public abstract class Pessoa {
     private String cpf;
     private Endereco endereco;
     private Contato contato;
-    //private String login;
-   // private String senha;
+    private String login;
+   private String senha;
+
+   //tirei o comentario para tentar cetar login e senha para aluno
 }

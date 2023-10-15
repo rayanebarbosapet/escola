@@ -159,6 +159,8 @@ public class Professor extends Funcionario {
         System.out.println("Quantas faltas deseja adicionar?");
         numeroDeFaltasAdicionais = scannerInt.nextInt();
         Aluno.listaDeAluno.get(numeroDoAluno).setNumerodeFaltas(faltasJaRegistradas + numeroDeFaltasAdicionais);
+        
+      
 
     }
 

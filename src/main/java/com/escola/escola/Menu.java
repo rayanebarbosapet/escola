@@ -2,6 +2,7 @@ package com.escola.escola;
 
 import java.util.Scanner;
 
+import com.escola.escola.entities.Aluno;
 import com.escola.escola.entities.Diretor;
 import com.escola.escola.entities.Professor;
 
@@ -16,7 +17,7 @@ public class Menu {
         int escolha = 0;
 
         while (escolha != 9) {
-            
+
             System.out.println("Bem vindo, Diretor(a)! \n O que deseja fazer?");
             System.out.println(
                     "1- Adicionar professor\n2- Editar Professor \n3- Listar professores \n4- Adicinar Turma \n5- Editar Turma \n6- Excluir Turma \n7- Ver Melhores Alunos \n8- Sair");
@@ -77,14 +78,13 @@ public class Menu {
 
     public static void menuPrincipalProf() {
         int escolha = 0;
-        
+
         while (escolha != 5) {
 
-        System.out.println("Bem vindo, Professor(a)! \n O que deseja fazer?");
-        System.out.println("1- Adicinar Aluno \n2- Editar Aluno \n3- Excluir Aluno \n4- Listar suas Turmas \n5- Sair");
-        escolha = scanner.nextInt();
-
-        
+            System.out.println("Bem vindo, Professor(a)! \n O que deseja fazer?");
+            System.out.println(
+                    "1- Adicinar Aluno \n2- Editar Aluno \n3- Excluir Aluno \n4- Listar suas Turmas \n5- Sair");
+            escolha = scanner.nextInt();
 
             switch (escolha) {
                 case 1:
@@ -117,7 +117,42 @@ public class Menu {
     }
 
     static void menuPrincipalAluno() {
-        System.out.println("Bem vindo ao menu de Aluno!");
-    }
+       
+        int escolha = 0;
 
+        while (escolha != 5) {
+
+            System.out.println("Bem vindo, aluno (a) \n O que deseja visualizar?");
+            System.out.println(
+                    "1- Ver todas as notas e status \n2- ver recuperação \n3- ver nota substituida \n4- Ver faltas \n5- Sair");
+            escolha = scanner.nextInt();
+
+            switch (escolha) {
+                case 1:
+                    // n();
+                    break;
+
+                case 2:
+                    // n.();
+                    break;
+
+                case 3:
+                    // n.();
+                    break;
+
+                case 4:
+                    //n.();
+                    break;
+                case 5:
+                    System.out.println("Saindo do Sistema");
+                    Login.inicio();
+                    break;
+
+                default:
+                    System.out.println("Opção Inválida");
+                    break;
+            }
+        }
+
+    }
 }
