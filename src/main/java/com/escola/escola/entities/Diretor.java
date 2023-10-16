@@ -8,19 +8,21 @@ import com.escola.escola.entities.Turma;
 public class Diretor extends Funcionario {
     private static Scanner scannerString = new Scanner(System.in);
     private static Scanner scannerInt = new Scanner(System.in);
+    private static int numeroDoProfessor;
 
     public static void adicinarProfessor() {
         String nome;
-        String cpf;
+        int numeroDaTurma;
 
         System.out.println("Informe o nome do professor que deseja adicionar:");
         nome = scannerString.nextLine();
-        System.out.println("Informe o cpf: ");
-        cpf = scannerString.nextLine();
+        System.out.println("Em qual turma deseja adicioná-lo? ");
+        Turma.listarTurmasExistentes();
+        numeroDaTurma = scannerInt.nextInt();
 
         Professor novoProfessor = new Professor();
         novoProfessor.setNome(nome);
-        novoProfessor.setCpf(cpf);
+        novoProfessor.setTurma(Turma.listaDeTurmas.get(numeroDaTurma));
         Professor.listaDeProfessores.add(novoProfessor);
 
         System.out.println("Deseja adicionar outro professor? s/n");
@@ -36,14 +38,16 @@ public class Diretor extends Funcionario {
     }
 
     public static void listarProfessores() {
-        System.out.println("-----------------------------------\n PROFESSORES\n");
+        System.out.println("-----PROFESSORES-----");
         for (int i = 0; i < Professor.listaDeProfessores.size(); i++) {
-            System.out.println(i + "- " + Professor.listaDeProfessores.get(i).getNome());
+            System.out.println(i + " - " + Professor.listaDeProfessores.get(i).getNome() + " - "
+                    + Professor.listaDeProfessores.get(i).getTurma());
         }
-
+        
     }
 
     public static void editarProfessor() {
+<<<<<<< HEAD
       /*  listarProfessores();
         Turma novaTurma ;
         String numeroDaTurma;
@@ -107,7 +111,40 @@ public class Diretor extends Funcionario {
                  break;
 
             }
+=======
+        int escolha = 0;
+>>>>>>> 5500d6bc198eabf9ea496c47ce3b6cd7574e1065
 
+        System.out.println("Qual professor deseja editar?");
+        listarProfessores();
+        numeroDoProfessor = scannerInt.nextInt();
+
+        while (escolha != 4) {
+
+            System.out.println("O que deseja fazer?");
+            System.out.println(
+                    "1- Excluir professor \n2- Ver desempenho professor \n3- voltar ");
+            escolha = scannerInt.nextInt();
+
+            switch (escolha) {
+                case 1:
+                    excluirProfessor();
+
+                    break;
+
+                case 2:
+                    verDesempenhoProfessor();
+                    break;
+
+                case 3:
+                    Menu.menuPrincipalDiretor();
+                    break;
+
+                default:
+                    System.out.println("Opção inválida");
+                    break;
+            }
+        }
 
         */ }
 
@@ -122,6 +159,10 @@ public class Diretor extends Funcionario {
             }
 
         }
+
+        System.out.println("-----LISTA ATUALIZADA-----");
+
+        listarProfessores();
     }
 
     public static void adicinarTurma() {
@@ -140,16 +181,7 @@ public class Diretor extends Funcionario {
         if (escolha.equals("s")) {
             adicinarTurma();
         } else {
-            listarTurma();
-            Menu.menuPrincipalDiretor();
-        }
-
-    }
-
-    public static void listarTurma() {
-        System.out.println("-----------------------------------\n TURMAS\n");
-        for (int i = 0; i < Turma.listaDeTurmas.size(); i++) {
-            System.out.println(i + "- " + Turma.listaDeTurmas.get(i).getNome());
+            Turma.listarTurmasExistentes();
         }
 
     }
@@ -158,32 +190,23 @@ public class Diretor extends Funcionario {
         String novoNome;
         int numeroDaTurma;
 
-        listarTurma();
+        Turma.listarTurmasExistentes();
         System.out.println("Informe o número da turma que deseja editar: ");
         numeroDaTurma = scannerInt.nextInt();
         System.out.println("Informe o novo nome da turma: ");
         novoNome = scannerString.nextLine();
 
-        for (int i = 0; i < Turma.listaDeTurmas.size(); i++) {
-            if (i == numeroDaTurma) {
-                Turma.listaDeTurmas.get(i).setNome(novoNome);
-            }
-
-        }
+        Turma.listaDeTurmas.get(numeroDaTurma).setNome(novoNome);
     }
 
     public static void excluirTurma() {
-        listarTurma();
+
         int numeroDaTurma;
+
+        Turma.listarTurmasExistentes();
         System.out.println("Informe o número da turma que deseja excluir: ");
         numeroDaTurma = scannerInt.nextInt();
-        for (int i = 0; i < Turma.listaDeTurmas.size(); i++) {
-            if (i == numeroDaTurma) {
-                Turma.listaDeTurmas.remove(numeroDaTurma);
-            }
-
-        }
-
+        Turma.listaDeTurmas.remove(numeroDaTurma);
     }
 
     public static void verDesempenhoProfessor() {
@@ -192,5 +215,49 @@ public class Diretor extends Funcionario {
 
     public static void verMelhoresAlunos() {
 
+        Aluno variavelAuxiliar = new Aluno();
+
+        Aluno.calcularMedia();
+
+        // Bubblesort de alunos com as melhores médias
+        for (int i = 0; i < Aluno.listaDeAluno.size(); i++) {
+            for (int j = 0; j < (Aluno.listaDeAluno.size()) - 1; j++) {
+                if (Aluno.listaDeAluno.get(j).getMedia() < Aluno.listaDeAluno.get(j + 1).getMedia()) {
+                    variavelAuxiliar = Aluno.listaDeAluno.get(j);
+                    Aluno.listaDeAluno.set(j, Aluno.listaDeAluno.get(j + 1));
+                    Aluno.listaDeAluno.set(j + 1, variavelAuxiliar);
+                }
+            }
+        }
+
+        System.out.println("\n-------------------------------------------------------------\n");
+        System.out.println("Top 3 - Alunos com as melhores médias");
+
+        if (Aluno.listaDeAluno.get(0).getMedia() == 0) {
+            System.out.println("1° - Não há aluno elegível para esta posição");
+        } else {
+            System.out.println("1° - " + Aluno.listaDeAluno.get(0).getNome() + " | Média: "
+                    + Aluno.listaDeAluno.get(0).getMedia());
+        }
+
+        if (Aluno.listaDeAluno.get(1).getMedia() == 0) {
+            System.out.println("2° - Não há aluno elegível para esta posição");
+        } else {
+            System.out.println(
+                    "2° - " + Aluno.listaDeAluno.get(1).getNome() + " | Média: "
+                            + Aluno.listaDeAluno.get(1).getMedia());
+        }
+
+        if (Aluno.listaDeAluno.get(2).getMedia() == 0) {
+            System.out.println("3° - Não há aluno elegível para esta posição");
+
+        } else {
+
+            System.out.println(
+                    "3° - " + Aluno.listaDeAluno.get(2).getNome() + " | Média: "
+                            + Aluno.listaDeAluno.get(2).getMedia());
+        }
+
+        System.out.println("\n-------------------------------------------------------------\n");
     }
 }
