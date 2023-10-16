@@ -47,7 +47,6 @@ public class Diretor extends Funcionario {
     }
 
     public static void editarProfessor() {
-<<<<<<< HEAD
       /*  listarProfessores();
         Turma novaTurma ;
         String numeroDaTurma;
@@ -111,9 +110,6 @@ public class Diretor extends Funcionario {
                  break;
 
             }
-=======
-        int escolha = 0;
->>>>>>> 5500d6bc198eabf9ea496c47ce3b6cd7574e1065
 
         System.out.println("Qual professor deseja editar?");
         listarProfessores();

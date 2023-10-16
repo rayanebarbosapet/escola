@@ -1,18 +1,16 @@
 package com.escola.escola.entities;
 
 import java.util.ArrayList;
+import java.util.Scanner;
+
+import com.escola.escola.Login;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
-<<<<<<< HEAD
-=======
 @EqualsAndHashCode(callSuper = true)
->>>>>>> 5500d6bc198eabf9ea496c47ce3b6cd7574e1065
-public class Aluno extends Pessoa {
-    private String login;
-    private String senha;
+public class Aluno extends Pessoa{
 
     private Double nota1;
     private Double nota2;
@@ -43,11 +41,52 @@ public class Aluno extends Pessoa {
         }
     }
 
-// ver nota
-    public void verFaltas ( ){
 
+    public static void inserirEndereco() {
 
-        System.out.println( "Número de Faltas: " );
+        Scanner sc = new Scanner(System.in);
+        Scanner sc2 = new Scanner(System.in);
+
+        Professor.listarAlunos();
+        System.out.println("Qual aluno deseja editar?");
+        int numeroDoAluno = sc2.nextInt();
+
+        
+        System.out.println("Informe seu cep:");
+        String cep = sc.nextLine();
+
+        listaDeAluno.get(numeroDoAluno).setEndereco(Endereco.getEnderecoByCep(cep));
+
+        //Endereco endereco = Endereco.getEnderecoByCep(cep);
+        System.out.println("Rua: " +   listaDeAluno.get(numeroDoAluno).getEndereco().getLogradouro());
+        System.out.println("Bairro: " + listaDeAluno.get(numeroDoAluno).getEndereco().getBairro());
+        System.out.println("Cidade: " + listaDeAluno.get(numeroDoAluno).getEndereco().getLocalidade());
+        System.out.println("Estado: " + listaDeAluno.get(numeroDoAluno).getEndereco().getUf());
+
+        System.out.println("Número: ");
+        String numero = sc.nextLine();
+        listaDeAluno.get(numeroDoAluno).getEndereco().setNumero(numero);
+
+        System.out.println("Complemento: ");
+        String complemento = sc.nextLine();
+        listaDeAluno.get(numeroDoAluno).getEndereco().setComplemento(complemento);
+        sc.close();
+
+        verFichaCompleta();
+
     }
+
+    public static void verFichaCompleta(){
+
+        for (int i = 0; i<listaDeAluno.size(); i++){
+            System.out.println("------------FICHA COMPLETA-----------------");
+        System.out.println("Aluno: " + listaDeAluno.get(i).getNome()); //Mapear pelo indice o aluno no login
+        System.out.println("Turma: " + listaDeAluno.get(i).getTurma());
+        System.out.println("Nota 1: " + listaDeAluno.get(i).getNota1() + "| Nota 2: ");
+        System.out.println("Endereço: " + listaDeAluno.get(i).getEndereco());
+    }
+
+        }
+        
 
 }

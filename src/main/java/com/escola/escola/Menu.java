@@ -88,7 +88,7 @@ public class Menu {
 
             switch (escolha) {
                 case 1:
-                    Professor.adicionarAluno();
+                    //Professor.adicionarAluno();
                     break;
 
                 case 2:
