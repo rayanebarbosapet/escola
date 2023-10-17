@@ -1,6 +1,7 @@
 package com.escola.escola;
 
 import java.util.Scanner;
+import com.escola.escola.Login;
 
 import com.escola.escola.entities.Aluno;
 import com.escola.escola.entities.Diretor;
@@ -124,12 +125,12 @@ public class Menu {
 
             System.out.println("Bem vindo, aluno (a) \n O que deseja visualizar?");
             System.out.println(
-                    "1- Ver todas as notas e status \n2- ver recuperação \n3- ver nota substituida \n4- Ver faltas \n5- Sair");
+                    "1- Ver notas \n2- ver recuperação \n3- ver nota substituida \n4- Ver faltas \n5- Sair");
             escolha = scanner.nextInt();
 
             switch (escolha) {
                 case 1:
-                    // n();
+                    //n.();
                     break;
 
                 case 2:
@@ -141,7 +142,8 @@ public class Menu {
                     break;
 
                 case 4:
-                    //n.();
+                Aluno.verFalta();
+                
                     break;
                 case 5:
                     System.out.println("Saindo do Sistema");

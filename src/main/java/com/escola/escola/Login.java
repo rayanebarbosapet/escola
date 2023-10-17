@@ -10,6 +10,7 @@ import lombok.Data;
 
 @Data
 public class Login {
+    public static final boolean[] egualsIgnoreCase = null;
     private static String login;
     private static String senha = "123";
     private static Scanner scannerString = new Scanner(System.in);
@@ -103,9 +104,11 @@ public class Login {
         Professor.listarAlunos();
         System.out.println("Com qual perfil deseja logar?");
         numeroDoAluno = scannerInt.nextInt();
+        
         login = Aluno.listaDeAluno.get(numeroDoAluno).getNome();
-
+          
         if (fazerLogin()) {
+            
             Menu.menuPrincipalAluno();
         }
 

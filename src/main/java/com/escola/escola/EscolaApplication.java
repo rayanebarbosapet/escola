@@ -132,10 +132,10 @@ public class EscolaApplication {
 
 		// Turma.calcularMediaDaTurma();
 
-		// Menu.menuPrincipalProf();
+		Menu.menuPrincipalProf();
 		// Login.inicio();
 
-		Aluno.inserirEndereco();
+		//Aluno.inserirEndereco();
 
 	}
 }

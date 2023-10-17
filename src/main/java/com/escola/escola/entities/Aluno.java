@@ -87,6 +87,22 @@ public class Aluno extends Pessoa{
     }
 
         }
-        
+          public static void verFalta(){
+
+           
+
+          for (int i = 0; i<listaDeAluno.size(); i++){  
+           
+
+         System.out.println(listaDeAluno.get(i).getNumerodeFaltas());
+
+            
+       
 
 }
+}
+}
+
+
+
+
