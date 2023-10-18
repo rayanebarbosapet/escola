@@ -3,16 +3,12 @@ package com.escola.escola.entities;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import com.escola.escola.Login;
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class Aluno extends Pessoa {
-    private String login;
-    private String senha;
 
     private Double nota1;
     private Double nota2;
@@ -41,8 +37,15 @@ public class Aluno extends Pessoa {
                 System.out.println("Erro: " + e.getMessage());
             }
         }
-    }
 
+        for (int i = 0; i < listaDeAluno.size(); i++) {
+            if (listaDeAluno.get(i).getMedia() < 5) {
+                listaDeAluno.get(i).setStatus("Reprovado");
+            } else {
+                listaDeAluno.get(i).setStatus("Aprovado");
+            }
+        }
+    }
 
     public static void inserirEndereco() {
 
@@ -53,14 +56,13 @@ public class Aluno extends Pessoa {
         System.out.println("Qual aluno deseja editar?");
         int numeroDoAluno = sc2.nextInt();
 
-        
         System.out.println("Informe seu cep:");
         String cep = sc.nextLine();
 
         listaDeAluno.get(numeroDoAluno).setEndereco(Endereco.getEnderecoByCep(cep));
 
-        //Endereco endereco = Endereco.getEnderecoByCep(cep);
-        System.out.println("Rua: " +   listaDeAluno.get(numeroDoAluno).getEndereco().getLogradouro());
+        // Endereco endereco = Endereco.getEnderecoByCep(cep);
+        System.out.println("Rua: " + listaDeAluno.get(numeroDoAluno).getEndereco().getLogradouro());
         System.out.println("Bairro: " + listaDeAluno.get(numeroDoAluno).getEndereco().getBairro());
         System.out.println("Cidade: " + listaDeAluno.get(numeroDoAluno).getEndereco().getLocalidade());
         System.out.println("Estado: " + listaDeAluno.get(numeroDoAluno).getEndereco().getUf());
@@ -74,37 +76,39 @@ public class Aluno extends Pessoa {
         listaDeAluno.get(numeroDoAluno).getEndereco().setComplemento(complemento);
         sc.close();
 
-        verFichaCompleta();
+    }
+
+    public static void verFichaCompleta(int index) {
+
+        calcularMedia();
+
+        // Mapear pelo indice o aluno no login
+
+        System.out.println("------------FICHA COMPLETA-----------------");
+        System.out.println(
+                "Aluno: " + listaDeAluno.get(index).getNome() + " | Turma: " + listaDeAluno.get(index).getTurma().getNome());
+        System.out.println(
+                "Nota 1: " + listaDeAluno.get(index).getNota1() + "| Nota 2: " + listaDeAluno.get(index).getNota2());
+        System.out.println(
+                "Média: " + listaDeAluno.get(index).getMedia() + " | Status: " + listaDeAluno.get(index).getStatus());
+        System.out.println("Número de Faltas: " + listaDeAluno.get(index).getNumerodeFaltas());
+        System.out.println("---------------------------------------------------------");
+        System.out.println("Endereço: ");
+
+        try {
+            // Tente acessar um atributo que pode ser nulo
+            System.out.println("Rua: " + listaDeAluno.get(index).getEndereco().getLogradouro() + ", nº: "
+                    + listaDeAluno.get(index).getEndereco().getNumero());
+            System.out.println("Complemento: " + listaDeAluno.get(index).getEndereco().getComplemento());
+            System.out.println("Bairro: " + listaDeAluno.get(index).getEndereco().getBairro());
+            System.out.println("Cidade: " + listaDeAluno.get(index).getEndereco().getLocalidade());
+            System.out.println("Estado: " + listaDeAluno.get(index).getEndereco().getUf());
+
+        } catch (NullPointerException e) {
+            // Lidar com o atributo nulo
+            System.out.println("O endereço não foi preenchido.");
+        }
 
     }
 
-    public static void verFichaCompleta(){
-
-        for (int i = 0; i<listaDeAluno.size(); i++){
-            System.out.println("------------FICHA COMPLETA-----------------");
-        System.out.println("Aluno: " + listaDeAluno.get(i).getNome()); //Mapear pelo indice o aluno no login
-        System.out.println("Turma: " + listaDeAluno.get(i).getTurma());
-        System.out.println("Nota 1: " + listaDeAluno.get(i).getNota1() + "| Nota 2: ");
-        System.out.println("Endereço: " + listaDeAluno.get(i).getEndereco());
-    }
-
 }
-public static void verFalta(){
-
-           
-
-          for (int i = 0; i<listaDeAluno.size(); i++){  
-           
-
-         System.out.println(listaDeAluno.get(i).getNumerodeFaltas());
-
-            
-       
-
-}
-}
-}
-
-
-
-

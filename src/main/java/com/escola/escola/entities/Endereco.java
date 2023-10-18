@@ -1,6 +1,5 @@
 package com.escola.escola.entities;
 
-import com.escola.escola.enums.Uf;
 
 import lombok.Data;
 
@@ -49,10 +48,6 @@ public class Endereco {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        // Tratar a resposta do via cep
-
-        // montar o meu Endereco endereco
 
         return endereco;
     }

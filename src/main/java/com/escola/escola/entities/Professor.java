@@ -12,12 +12,29 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = false)
 public class Professor extends Funcionario {
     private Turma turma;
+    private Double somaDaMediaDasTurmas = 0.0;
     public static ArrayList<Professor> listaDeProfessores = new ArrayList<>();
 
     private static int numeroDoAluno;
     private static Scanner scannerDouble = new Scanner(System.in);
     private static Scanner scannerString = new Scanner(System.in);
     private static Scanner scannerInt = new Scanner(System.in);
+
+    public static void calcularMediaDoProfessor() {
+
+        Turma.calcularMediaDaTurma();
+
+        for (int i = 0; i < listaDeProfessores.size(); i++) {
+            for (int j = 0; j < Turma.listaDeTurmas.size(); j++) {
+                if (listaDeProfessores.get(i).getTurma() == Turma.listaDeTurmas.get(j)) {
+                    listaDeProfessores.get(i).somaDaMediaDasTurmas = listaDeProfessores.get(i).somaDaMediaDasTurmas
+                            + Turma.listaDeTurmas.get(j).getSomaMediaAlunosDaTurma();
+                }
+
+            }
+
+        }
+    }
 
     public static void listarAlunos() {
         System.out.println("-----------------------------------\n ALUNOS\n");
@@ -120,8 +137,9 @@ public class Professor extends Funcionario {
 
     public static void listarTurma() {
 
-        // etodo que olha o numero do index do professor e o da turma ; pegaria o index da turma e acharia os alunos
-    System.out.println(Turma.listaDeTurmas);
+        // etodo que olha o numero do index do professor e o da turma ; pegaria o index
+        // da turma e acharia os alunos
+        System.out.println(Turma.listaDeTurmas);
     }
 
     public static void trocarNomeDoAluno() {
@@ -159,8 +177,6 @@ public class Professor extends Funcionario {
         System.out.println("Quantas faltas deseja adicionar?");
         numeroDeFaltasAdicionais = scannerInt.nextInt();
         Aluno.listaDeAluno.get(numeroDoAluno).setNumerodeFaltas(faltasJaRegistradas + numeroDeFaltasAdicionais);
-        
-      
 
     }
 
@@ -192,7 +208,6 @@ public class Professor extends Funcionario {
     public static void imprimirStatusDosAlunos() {
 
         Aluno.calcularMedia();
-
         for (int i = 0; i < Aluno.listaDeAluno.size(); i++) {
             if (Aluno.listaDeAluno.get(i).getMedia() < 5) {
                 Aluno.listaDeAluno.get(i).setStatus("Reprovado");
@@ -202,7 +217,7 @@ public class Professor extends Funcionario {
 
             System.out.println("Aluno: " + Aluno.listaDeAluno.get(i).getNome());
             System.out.println("Nota 1: " + Aluno.listaDeAluno.get(i).getNota1() + " | Nota 2: "
-                    + Aluno.listaDeAluno.get(i).getNota2());//onde tem get(i) passaria a get(numeroDoAluno)
+                    + Aluno.listaDeAluno.get(i).getNota2());// onde tem get(i) passaria a get(numeroDoAluno)
             System.out.println("Média Final: " + Aluno.listaDeAluno.get(i).getMedia() + " | Status: "
                     + Aluno.listaDeAluno.get(i).getStatus());
             System.out.println("\n ---------------------------------------------------------\n");

@@ -1,9 +1,7 @@
 package com.escola.escola;
 
 import java.util.Scanner;
-import com.escola.escola.Login;
 
-import com.escola.escola.entities.Aluno;
 import com.escola.escola.entities.Diretor;
 import com.escola.escola.entities.Professor;
 import com.escola.escola.entities.Turma;
@@ -38,19 +36,21 @@ public class Menu {
                 case 3:
                     Diretor.listarProfessores();
 
-                    try {    Thread.sleep(6 * 1000);
-            System.out.println("Aperte V para voltar:");
-            String cons = scannerString.nextLine();
+                    try {
+                        Thread.sleep(6 * 1000);
+                        System.out.println("Aperte V para voltar:");
+                        String cons = scannerString.nextLine();
 
-            if (cons.equals("V") || cons.equals("v")) {
-                Menu.menuPrincipalDiretor();
-            }
-            while (!(cons.equals("V") || cons.equals("v"))) {
-                System.out.println("opção inválida");
-                Diretor.listarProfessores();
-            }} catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+                        if (cons.equals("V") || cons.equals("v")) {
+                            Menu.menuPrincipalDiretor();
+                        }
+                        while (!(cons.equals("V") || cons.equals("v"))) {
+                            System.out.println("opção inválida");
+                            Diretor.listarProfessores();
+                        }
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                     break;
 
                 case 4:
@@ -80,7 +80,7 @@ public class Menu {
 
                 case 9:
                     Turma.listarTurmasExistentes();
-                    
+
                     break;
                 case 10:
                     Diretor.excluirTurma();
@@ -140,44 +140,4 @@ public class Menu {
 
     }
 
-    static void menuPrincipalAluno() {
-
-        int escolha = 0;
-
-        while (escolha != 5) {
-
-            System.out.println("Bem vindo, aluno (a) \n O que deseja visualizar?");
-            System.out.println(
-                    "1- Ver notas \n2- ver recuperação \n3- ver nota substituida \n4- Ver faltas \n5- Sair");
-            escolha = scanner.nextInt();
-
-            switch (escolha) {
-                case 1:
-                    // n.();
-                    break;
-
-                case 2:
-                    // n.();
-                    break;
-
-                case 3:
-                    // n.();
-                    break;
-
-                case 4:
-                    Aluno.verFalta();
-
-                    break;
-                case 5:
-                    System.out.println("Saindo do Sistema");
-                    Login.inicio();
-                    break;
-
-                default:
-                    System.out.println("Opção Inválida");
-                    break;
-            }
-        }
-
-    }
 }

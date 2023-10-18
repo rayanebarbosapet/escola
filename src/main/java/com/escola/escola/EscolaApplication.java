@@ -3,11 +3,8 @@ package com.escola.escola;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.Scanner;
-
 import com.escola.escola.entities.Aluno;
 import com.escola.escola.entities.Diretor;
-import com.escola.escola.entities.Endereco;
 import com.escola.escola.entities.Professor;
 import com.escola.escola.entities.Turma;
 
@@ -69,8 +66,7 @@ public class EscolaApplication {
 		aluno1.setNome("Rayane");
 		aluno1.setTurma(turma2);
 		aluno1.setNota1(10.0);
-		aluno1.setLogin("Rayane");
-		aluno1.setSenha("123");
+		
 
 		Aluno aluno2 = new Aluno();
 		aluno2.setNome("Danielle");
@@ -130,9 +126,14 @@ public class EscolaApplication {
 		Aluno.listaDeAluno.add(aluno11);
 		Aluno.listaDeAluno.add(aluno12);
 
+
+		Diretor.verDesempenhoProfessor();
+
+		//Turma.listaReorganizada();
+
+		//Login.loginDeAlunos();
 		
-		
-		Login.inicio();
+		//Login.inicio();
 		//Diretor.adicinarProfessor();
 
 		
