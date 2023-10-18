@@ -10,7 +10,9 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class Aluno extends Pessoa{
+public class Aluno extends Pessoa {
+    private String login;
+    private String senha;
 
     private Double nota1;
     private Double nota2;
@@ -86,8 +88,8 @@ public class Aluno extends Pessoa{
         System.out.println("Endereço: " + listaDeAluno.get(i).getEndereco());
     }
 
-        }
-          public static void verFalta(){
+}
+public static void verFalta(){
 
            
 

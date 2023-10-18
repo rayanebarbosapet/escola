@@ -4,12 +4,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.Scanner;
-import com.escola.escola.entities.Endereco;
 
 import com.escola.escola.entities.Aluno;
 import com.escola.escola.entities.Diretor;
+import com.escola.escola.entities.Endereco;
 import com.escola.escola.entities.Professor;
 import com.escola.escola.entities.Turma;
+
 
 @SpringBootApplication
 public class EscolaApplication {
@@ -17,13 +18,12 @@ public class EscolaApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EscolaApplication.class, args);
 
-		Scanner sc = new Scanner(System.in);
-
-		// Intâncias de Diretores ------------------------------------------
+// Intâncias de Diretores ------------------------------------------
 		Diretor diretor1 = new Diretor();
 		diretor1.setNome("Alvo");
+		
 
-		// Intâncias de Turmas -------------------------------------------
+// Intâncias de Turmas -------------------------------------------
 		Turma turma1 = new Turma();
 		turma1.setNome("Lufa-Lufa");
 
@@ -41,7 +41,7 @@ public class EscolaApplication {
 		Turma.listaDeTurmas.add(turma3);
 		Turma.listaDeTurmas.add(turma4);
 
-		// Instâncias de Professores----------------------------------------
+	// Instâncias de Professores----------------------------------------
 		Professor professor1 = new Professor();
 		professor1.setNome("Pomona Sprout");
 		professor1.setTurma(turma1);
@@ -63,11 +63,14 @@ public class EscolaApplication {
 		Professor.listaDeProfessores.add(professor3);
 		Professor.listaDeProfessores.add(professor4);
 
-		// Instâncias de Aluno -------------------------------------------------------
+
+// Instâncias de Aluno -------------------------------------------------------
 		Aluno aluno1 = new Aluno();
 		aluno1.setNome("Rayane");
 		aluno1.setTurma(turma2);
 		aluno1.setNota1(10.0);
+		aluno1.setLogin("Rayane");
+		aluno1.setSenha("123");
 
 		Aluno aluno2 = new Aluno();
 		aluno2.setNome("Danielle");
@@ -127,17 +130,37 @@ public class EscolaApplication {
 		Aluno.listaDeAluno.add(aluno11);
 		Aluno.listaDeAluno.add(aluno12);
 
-		// Login.inicio();
-		// Diretor.adicinarProfessor();
+		
+		
+		Login.inicio();
+		//Diretor.adicinarProfessor();
 
-		// Turma.calcularMediaDaTurma();
+		
 
-		Menu.menuPrincipalProf();
-		// Login.inicio();
+		//Turma.calcularMediaDaTurma();
 
-		//Aluno.inserirEndereco();
+		// Menu.menuPrincipalProf(); 
+		//Login.inicio();
+		
+	// 	System.out.println("Qual seu cep");
+	// 	String cep =  sc.nextLine();
 
-	}
+			
+
+	//  Endereco endereco = Endereco.getEnderecoByCep(cep);
+	//  System.out.println("Rua: " + endereco.getLogradouro());
+	// 	System.out.println("Bairro: " + endereco.getBairro());
+	// 	System.out.println("Cidade: " + endereco.getLocalidade());
+	// 	System.out.println("Estado: " + endereco.getUf());
+
+	// 	System.out.println("Número: ");
+	// 	String numero = sc.nextLine();
+	// 	endereco.setNumero(numero);
+
+	// 	System.out.println("Complemento: ");
+	// 	String complemento = sc.nextLine();
+	// 	endereco.setComplemento(complemento);
+		
+	 }
+
 }
-
-

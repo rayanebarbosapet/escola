@@ -1,6 +1,7 @@
 package com.escola.escola.entities;
 
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 import com.escola.escola.Menu;
 import com.escola.escola.entities.Turma;
@@ -42,6 +43,22 @@ public class Diretor extends Funcionario {
         for (int i = 0; i < Professor.listaDeProfessores.size(); i++) {
             System.out.println(i + " - " + Professor.listaDeProfessores.get(i).getNome() + " - "
                     + Professor.listaDeProfessores.get(i).getTurma());
+        }
+        try {
+            Thread.sleep( 6 * 1000);
+            System.out.println("Aperte V para voltar:");
+                        String cons = scannerString.nextLine();
+    
+                        if (cons.equals("V") || cons.equals("v")) {
+                            Menu.menuPrincipalDiretor();
+                        }
+                        while (!(cons.equals("V") || cons.equals("v"))) {
+                            System.out.println("opção inválida");
+                            Diretor.listarProfessores();
+                        }
+            // Converter minutos em milissegundos e fazer o programa dormir
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
         
     }
@@ -159,6 +176,23 @@ public class Diretor extends Funcionario {
         System.out.println("-----LISTA ATUALIZADA-----");
 
         listarProfessores();
+
+        try {
+            Thread.sleep( 6 * 1000);
+            System.out.println("Aperte V para voltar:");
+                        String cons = scannerString.nextLine();
+    
+                        if (cons.equals("V") || cons.equals("v")) {
+                            Menu.menuPrincipalDiretor();
+                        }
+                        while (!(cons.equals("V") || cons.equals("v"))) {
+                            System.out.println("opção inválida");
+                            Diretor.listarProfessores();
+                        }
+            // Converter minutos em milissegundos e fazer o programa dormir
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void adicinarTurma() {

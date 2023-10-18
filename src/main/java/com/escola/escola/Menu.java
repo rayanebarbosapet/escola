@@ -36,16 +36,7 @@ public class Menu {
 
                 case 3:
                     Diretor.listarProfessores();
-                    System.out.println("Aperte V para voltar:");
-                    String cons = scannerString.nextLine();
-
-                    if (cons.equals("V") || cons.equals("v")) {
-                        Menu.menuPrincipalDiretor();
-                    }
-                    while (!(cons.equals("V") || cons.equals("v"))) {
-                        System.out.println("opção inválida");
-                        Diretor.listarProfessores();
-                    }
+                    
                     break;
 
                 case 4:
@@ -89,7 +80,7 @@ public class Menu {
 
             switch (escolha) {
                 case 1:
-                    //Professor.adicionarAluno();
+                    Professor.adicionarAluno();
                     break;
 
                 case 2:
