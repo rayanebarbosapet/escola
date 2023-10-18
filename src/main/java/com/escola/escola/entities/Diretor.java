@@ -63,7 +63,7 @@ public class Diretor extends Funcionario {
                 break;
             
                 case 2:
-                trocarTurmaDoProfessor();
+                trocarProfessorDaTurma();
                 break;
 
                 case 3:
@@ -220,14 +220,36 @@ public class Diretor extends Funcionario {
 
         System.out.println("Nome do professor alterado com sucesso!");
     }
-        
-
-    public static void trocarTurmaDoProfessor() {
-        int numeroDaNovaTurma;
+    
+    public static void trocarProfessorDaTurma() {
         Turma.listarTurmasExistentes();
-        System.out.println("Para qual turma deseja mudar o professor?");
-        numeroDaNovaTurma = scannerInt.nextInt();
-        //Aluno.listaDeAluno.get(numeroDoAluno).setTurma(Turma.listaDeTurmas.get(numeroDaNovaTurma));
-        Professor.listaDeProfessores.get(numeroDaNovaTurma).setTurma(Turma.listaDeTurmas.get(numeroDaNovaTurma));
-    }
+
+        System.out.println("Informe o número da turma para a qual deseja trocar o professor:");
+        int numeroDaTurma = scannerInt.nextInt();
+        
+        // Verifique se o número da turma é válido
+        if (numeroDaTurma >= 0 && numeroDaTurma < Turma.listaDeTurmas.size()) {
+            Turma turmaSelecionada = Turma.listaDeTurmas.get(numeroDaTurma);
+            
+            // Exiba a lista de professores para escolher um novo professor
+            listarProfessores();;
+            System.out.println("Informe o número do novo professor:");
+            int numeroDoNovoProfessor = scannerInt.nextInt();
+            
+            // Verifique se o número do professor é válido
+            if (numeroDoNovoProfessor >= 0 && numeroDoNovoProfessor < Professor.listaDeProfessores.size()) {
+                Professor novoProfessor = Professor.listaDeProfessores.get(numeroDoNovoProfessor);
+                
+                // Atribua o novo professor para a turma selecionada
+                novoProfessor.setTurma(turmaSelecionada);
+                System.out.println("Professor da turma alterado com sucesso.");
+            } else {
+                System.out.println("Número de professor inválido. Tente novamente.");
+            }
+        } else {
+            System.out.println("Número de turma inválido. Tente novamente.");
+        }
 }
+
+}
+
