@@ -44,123 +44,39 @@ public class Diretor extends Funcionario {
             System.out.println(i + " - " + Professor.listaDeProfessores.get(i).getNome() + " - "
                     + Professor.listaDeProfessores.get(i).getTurma());
         }
-        try {
-            Thread.sleep( 6 * 1000);
-            System.out.println("Aperte V para voltar:");
-                        String cons = scannerString.nextLine();
-    
-                        if (cons.equals("V") || cons.equals("v")) {
-                            Menu.menuPrincipalDiretor();
-                        }
-                        while (!(cons.equals("V") || cons.equals("v"))) {
-                            System.out.println("opção inválida");
-                            Diretor.listarProfessores();
-                        }
+       
+            
             // Converter minutos em milissegundos e fazer o programa dormir
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         
+
     }
 
     public static void editarProfessor() {
-      /*  listarProfessores();
-        Turma novaTurma ;
-        String numeroDaTurma;
-        String novoNome;
-        int escolha = 0;
-        int numeroDoProfessor;
-        
-     
-        System.out.println("qual aluno deseja editar?");
-      numeroDoProfessor = scannerInt.nextInt();
-       
-        while (escolha != 4) {
-            
-            System.out.println("o que deseja editar?");
-            System.out.println(
-                    "1- nome do professor \n2- turma do professor \n3- Sair");
-            
-            escolha = scannerInt.nextInt();
-            
 
-            switch (escolha) {
-                case 1:
-                System.out.println("qual o novo nome?");
-                novoNome = scannerString.nextLine();
-                Professor.listaDeProfessores.get(numeroDoProfessor).setNome(novoNome);
+        System.out.println("O que deseja editar");
+        System.out.println("1- Editar nome do professor \n2- Trocar turma do professor \n3- Voltar ao menu do Diretor");
+        int escolha = scannerInt.nextInt();
+
+        switch (escolha) {
+            case 1:
+                trocarNomeDoProfessor();
                 break;
+            
                 case 2:
-                 System.out.println("qual a nova turma?");
-                 numeroDaTurma = scannerString.nextLine();
-                 Professor.listaDeProfessores.get(numeroDoProfessor).setTurma
-                
+                trocarTurmaDoProfessor();
                 break;
-
-                case 3: 
-                System.out.println("informe nota 01:");
-                nota1 = scfloat.nextFloat();
-                Aluno.listaDeAluno.get(numeroAluno).setNota1(nota1);
-
-                System.out.println("informe nota 02:");
-                nota2 = scfloat.nextFloat();
-                Aluno.listaDeAluno.get(numeroAluno).setNota2(nota2);
-
-               
-                break;
-
-                case 4:
-                System.out.println("informe a nota de recuperação:");
-                nota3 = scfloat.nextFloat();
-                if ((Aluno.listaDeAluno.get(numeroAluno).getNota1()) > (Aluno.listaDeAluno.get(numeroAluno).getNota2()) ){
-                    if ((Aluno.listaDeAluno.get(numeroAluno).getNota2()) < (nota3) ){
-                        Aluno.listaDeAluno.get(numeroAluno).setNota2(nota3);
-                    }
-                }
-                break;
-
-                case 5:
-                System.out.println("saindo");
-                break;
-                 default:
-                 System.out.println("opção inválida");
-                 break;
-
-            }
-
-        System.out.println("Qual professor deseja editar?");
-        listarProfessores();
-        numeroDoProfessor = scannerInt.nextInt();
-
-        while (escolha != 4) {
-
-            System.out.println("O que deseja fazer?");
-            System.out.println(
-                    "1- Excluir professor \n2- Ver desempenho professor \n3- voltar ");
-            escolha = scannerInt.nextInt();
-
-            switch (escolha) {
-                case 1:
-                    excluirProfessor();
-
-                    break;
-
-                case 2:
-                    verDesempenhoProfessor();
-                    break;
 
                 case 3:
-                    Menu.menuPrincipalDiretor();
-                    break;
+                System.out.println("Voltando ao menu do diretor");
 
-                default:
-                    System.out.println("Opção inválida");
-                    break;
-            }
+                Menu.menuPrincipalDiretor();
+                break;
+            default:
+            System.out.println("Opção inválida");
+                break;
         }
-
-        */ }
-
+    }
+        
     public static void excluirProfessor() {
         listarProfessores();
         int numeroDoProfessor;
@@ -178,23 +94,23 @@ public class Diretor extends Funcionario {
         listarProfessores();
 
         try {
-            Thread.sleep( 6 * 1000);
+            Thread.sleep(6 * 1000);
             System.out.println("Aperte V para voltar:");
-                        String cons = scannerString.nextLine();
-    
-                        if (cons.equals("V") || cons.equals("v")) {
-                            Menu.menuPrincipalDiretor();
-                        }
-                        while (!(cons.equals("V") || cons.equals("v"))) {
-                            System.out.println("opção inválida");
-                            Diretor.listarProfessores();
-                        }
+            String cons = scannerString.nextLine();
+
+            if (cons.equals("V") || cons.equals("v")) {
+                Menu.menuPrincipalDiretor();
+            }
+            while (!(cons.equals("V") || cons.equals("v"))) {
+                System.out.println("opção inválida");
+                Diretor.listarProfessores();
+            }
             // Converter minutos em milissegundos e fazer o programa dormir
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
-
+    
     public static void adicinarTurma() {
         String nome;
 
@@ -289,5 +205,29 @@ public class Diretor extends Funcionario {
         }
 
         System.out.println("\n-------------------------------------------------------------\n");
+    }
+
+    public static void trocarNomeDoProfessor() {
+        listarProfessores();
+
+        System.out.println("Digite o número do professor que deseja alterar o nome:");
+        int numeroDoProfessor = scannerInt.nextInt();
+
+        System.out.println("Digite o novo nome do professor");
+        String novoNome = scannerString.nextLine();
+
+        Professor.listaDeProfessores.get(numeroDoProfessor).setNome(novoNome);
+
+        System.out.println("Nome do professor alterado com sucesso!");
+    }
+        
+
+    public static void trocarTurmaDoProfessor() {
+        int numeroDaNovaTurma;
+        Turma.listarTurmasExistentes();
+        System.out.println("Para qual turma deseja mudar o professor?");
+        numeroDaNovaTurma = scannerInt.nextInt();
+        //Aluno.listaDeAluno.get(numeroDoAluno).setTurma(Turma.listaDeTurmas.get(numeroDaNovaTurma));
+        Professor.listaDeProfessores.get(numeroDaNovaTurma).setTurma(Turma.listaDeTurmas.get(numeroDaNovaTurma));
     }
 }

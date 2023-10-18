@@ -6,6 +6,7 @@ import com.escola.escola.Login;
 import com.escola.escola.entities.Aluno;
 import com.escola.escola.entities.Diretor;
 import com.escola.escola.entities.Professor;
+import com.escola.escola.entities.Turma;
 
 import lombok.Data;
 
@@ -36,26 +37,57 @@ public class Menu {
 
                 case 3:
                     Diretor.listarProfessores();
-                    
+
+                    try {    Thread.sleep(6 * 1000);
+            System.out.println("Aperte V para voltar:");
+            String cons = scannerString.nextLine();
+
+            if (cons.equals("V") || cons.equals("v")) {
+                Menu.menuPrincipalDiretor();
+            }
+            while (!(cons.equals("V") || cons.equals("v"))) {
+                System.out.println("opção inválida");
+                Diretor.listarProfessores();
+            }} catch (InterruptedException e) {
+                e.printStackTrace();
+            }
                     break;
 
                 case 4:
-                    Diretor.adicinarTurma();
+                    Diretor.excluirProfessor();
+
                     break;
 
                 case 5:
-                    Diretor.editarTurma();
+                    Diretor.verDesempenhoProfessor();
+
                     break;
 
                 case 6:
-                    Diretor.excluirTurma();
+                    Diretor.verMelhoresAlunos();
+
                     break;
 
                 case 7:
-                    Diretor.verMelhoresAlunos();
+                    Diretor.adicinarTurma();
+
                     break;
 
                 case 8:
+                    Diretor.editarTurma();
+
+                    break;
+
+                case 9:
+                    Turma.listarTurmasExistentes();
+                    
+                    break;
+                case 10:
+                    Diretor.excluirTurma();
+
+                    break;
+
+                case 11:
                     System.out.println("Saindo do Sistema");
                     Login.inicio();
                     break;
@@ -109,7 +141,7 @@ public class Menu {
     }
 
     static void menuPrincipalAluno() {
-       
+
         int escolha = 0;
 
         while (escolha != 5) {
@@ -121,7 +153,7 @@ public class Menu {
 
             switch (escolha) {
                 case 1:
-                    //n.();
+                    // n.();
                     break;
 
                 case 2:
@@ -133,8 +165,8 @@ public class Menu {
                     break;
 
                 case 4:
-                Aluno.verFalta();
-                
+                    Aluno.verFalta();
+
                     break;
                 case 5:
                     System.out.println("Saindo do Sistema");
