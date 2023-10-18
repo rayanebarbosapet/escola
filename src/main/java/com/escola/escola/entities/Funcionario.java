@@ -11,6 +11,4 @@ import lombok.EqualsAndHashCode;
 public class Funcionario extends Pessoa {
     private int ctps;
     private Cargo cargo;
-
-
 }

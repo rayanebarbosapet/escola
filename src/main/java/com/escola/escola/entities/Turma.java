@@ -17,6 +17,8 @@ public class Turma {
         }
     }
 
+    // Método que soma as médias dos alunos referentes a uma turma
+
     public static void calcularMediaDaTurma() {
 
         Aluno.calcularMedia();
@@ -32,16 +34,34 @@ public class Turma {
             }
 
         }
+    }
 
-        for (int l = 0; l < listaDeTurmas.size(); l++) {
-            System.out.println("Turma: " + listaDeTurmas.get(l).nome + "| Soma Média dos Alunos: "
-                    + listaDeTurmas.get(l).somaMediaAlunosDaTurma);
+    // Bubble sort para reorganizar as turmas com as melhores médias somadas
+    public static void listaReorganizada() {
+
+        calcularMediaDaTurma();
+        Turma variavelAuxiliar = new Turma();
+
+        for (int i = 0; i < listaDeTurmas.size(); i++) {
+            for (int j = 0; j < (listaDeTurmas.size() - 1); j++) {
+                if (listaDeTurmas.get(j).getSomaMediaAlunosDaTurma() < listaDeTurmas.get(j + 1)
+                        .getSomaMediaAlunosDaTurma()) {
+                    variavelAuxiliar = listaDeTurmas.get(j);
+                    listaDeTurmas.set(j, listaDeTurmas.get(j + 1));
+                    listaDeTurmas.set(j + 1, variavelAuxiliar);
+                }
+            }
+        }
+
+        System.out.println("-------LISTA ORGANIZADA PELAS MELHORES MÉDIAS -----");
+        for (int i = 0; i < listaDeTurmas.size(); i++) {
+            System.out.println("Turma: " + listaDeTurmas.get(i).getNome() + " | Média: "
+                    + listaDeTurmas.get(i).getSomaMediaAlunosDaTurma());
 
         }
 
-        // materia- criar enum com as materias .
+        System.out.println("-----" + listaDeTurmas.get(0).getNome() + " ganha a Taça das Casas!!!-----");
 
     }
-
 
 }

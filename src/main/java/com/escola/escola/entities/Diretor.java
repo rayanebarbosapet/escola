@@ -1,10 +1,8 @@
 package com.escola.escola.entities;
 
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
 import com.escola.escola.Menu;
-import com.escola.escola.entities.Turma;
 
 public class Diretor extends Funcionario {
     private static Scanner scannerString = new Scanner(System.in);
@@ -42,12 +40,8 @@ public class Diretor extends Funcionario {
         System.out.println("-----PROFESSORES-----");
         for (int i = 0; i < Professor.listaDeProfessores.size(); i++) {
             System.out.println(i + " - " + Professor.listaDeProfessores.get(i).getNome() + " - "
-                    + Professor.listaDeProfessores.get(i).getTurma());
+                    + Professor.listaDeProfessores.get(i).getTurma().getNome());
         }
-       
-            
-            // Converter minutos em milissegundos e fazer o programa dormir
-        
 
     }
 
@@ -61,22 +55,22 @@ public class Diretor extends Funcionario {
             case 1:
                 trocarNomeDoProfessor();
                 break;
-            
-                case 2:
+
+            case 2:
                 trocarProfessorDaTurma();
                 break;
 
-                case 3:
+            case 3:
                 System.out.println("Voltando ao menu do diretor");
 
                 Menu.menuPrincipalDiretor();
                 break;
             default:
-            System.out.println("Opção inválida");
+                System.out.println("Opção inválida");
                 break;
         }
     }
-        
+
     public static void excluirProfessor() {
         listarProfessores();
         int numeroDoProfessor;
@@ -110,7 +104,7 @@ public class Diretor extends Funcionario {
             e.printStackTrace();
         }
     }
-    
+
     public static void adicinarTurma() {
         String nome;
 
@@ -128,6 +122,7 @@ public class Diretor extends Funcionario {
             adicinarTurma();
         } else {
             Turma.listarTurmasExistentes();
+            Menu.menuPrincipalDiretor();
         }
 
     }
@@ -143,6 +138,14 @@ public class Diretor extends Funcionario {
         novoNome = scannerString.nextLine();
 
         Turma.listaDeTurmas.get(numeroDaTurma).setNome(novoNome);
+        System.out.println("Turma editada com sucesso");
+        System.out.println("Deseja editar outra turma? (s/n)");
+        String escolha = scannerString.nextLine();
+        if(escolha.equals("s" )|| escolha.equals("S")){
+            excluirTurma();
+        } else{
+            Menu.menuPrincipalDiretor();
+        }
     }
 
     public static void excluirTurma() {
@@ -153,10 +156,57 @@ public class Diretor extends Funcionario {
         System.out.println("Informe o número da turma que deseja excluir: ");
         numeroDaTurma = scannerInt.nextInt();
         Turma.listaDeTurmas.remove(numeroDaTurma);
+        System.out.println("Turma excluída com sucesso");
+        System.out.println("Deseja excluir outra turma? (s/n)");
+        String escolha = scannerString.nextLine();
+        if(escolha.equals("s" )|| escolha.equals("S")){
+            excluirTurma();
+        } else{
+            Menu.menuPrincipalDiretor();
+        }
     }
 
     public static void verDesempenhoProfessor() {
-        // Criar métrica para medir desempenho do professor
+        Professor variavelAuxiliar = new Professor();
+        Professor.calcularMediaDoProfessor();
+
+        // Bubblesort lista de professores cuja as turmas tiveram as melhores médias
+
+        for (int i = 0; i < Professor.listaDeProfessores.size(); i++) {
+            for (int j = 0; j < (Professor.listaDeProfessores.size() - 1); j++) {
+                if (Professor.listaDeProfessores.get(j).getSomaDaMediaDasTurmas() < Professor.listaDeProfessores
+                        .get(j + 1).getSomaDaMediaDasTurmas()) {
+                    variavelAuxiliar = Professor.listaDeProfessores.get(j);
+                    Professor.listaDeProfessores.set(j, Professor.listaDeProfessores.get(j + 1));
+                    Professor.listaDeProfessores.set(j + 1, variavelAuxiliar);
+                }
+
+            }
+        }
+
+        System.out.println("-----RANKING DE PROFESSORES-----");
+        for (int l = 0; l < Professor.listaDeProfessores.size(); l++) {
+            System.out.println((l + 1) + "º - " + Professor.listaDeProfessores.get(l).getNome()
+                    + " | Média das Turmas: " + Professor.listaDeProfessores.get(l).getSomaDaMediaDasTurmas());
+        }
+
+        try {
+            Thread.sleep(6 * 1000);
+            System.out.println("Aperte V para voltar:");
+            String cons = scannerString.nextLine();
+
+            if (cons.equals("V") || cons.equals("v")) {
+                Menu.menuPrincipalDiretor();
+            }
+            while (!(cons.equals("V") || cons.equals("v"))) {
+                System.out.println("opção inválida");
+                Diretor.listarProfessores();
+            }
+            // Converter minutos em milissegundos e fazer o programa dormir
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public static void verMelhoresAlunos() {
@@ -219,37 +269,51 @@ public class Diretor extends Funcionario {
         Professor.listaDeProfessores.get(numeroDoProfessor).setNome(novoNome);
 
         System.out.println("Nome do professor alterado com sucesso!");
-    }
-    
-    public static void trocarProfessorDaTurma() {
-        Turma.listarTurmasExistentes();
 
-        System.out.println("Informe o número da turma para a qual deseja trocar o professor:");
-        int numeroDaTurma = scannerInt.nextInt();
-        
-        // Verifique se o número da turma é válido
-        if (numeroDaTurma >= 0 && numeroDaTurma < Turma.listaDeTurmas.size()) {
-            Turma turmaSelecionada = Turma.listaDeTurmas.get(numeroDaTurma);
-            
-            // Exiba a lista de professores para escolher um novo professor
-            listarProfessores();;
-            System.out.println("Informe o número do novo professor:");
-            int numeroDoNovoProfessor = scannerInt.nextInt();
-            
-            // Verifique se o número do professor é válido
-            if (numeroDoNovoProfessor >= 0 && numeroDoNovoProfessor < Professor.listaDeProfessores.size()) {
-                Professor novoProfessor = Professor.listaDeProfessores.get(numeroDoNovoProfessor);
-                
-                // Atribua o novo professor para a turma selecionada
-                novoProfessor.setTurma(turmaSelecionada);
-                System.out.println("Professor da turma alterado com sucesso.");
+        System.out.println("Deseja trocar o nome de mais algum professor? (s/n)");
+        String escolha = scannerString.nextLine();
+
+        if (escolha.equals("s") || escolha.equals("S")) {
+            trocarNomeDoProfessor();
+        } else {
+            Menu.menuPrincipalDiretor();
+        }
+    }
+
+    public static void trocarProfessorDaTurma() {
+
+        // Exiba a lista de professores para escolher um novo professor
+        listarProfessores();
+        ;
+        System.out.println("Informe o número do professor:");
+        int numeroDoProfessor = scannerInt.nextInt();
+
+        // Verifique se o número do professor é válido
+        if (numeroDoProfessor >= 0 && numeroDoProfessor < Professor.listaDeProfessores.size()) {
+            Turma.listarTurmasExistentes();
+            System.out.println("Informe o número da turma para a qual deseja trocar o professor:");
+            int numeroDaTurma = scannerInt.nextInt();
+            // Verifique se o número da turma é válido
+            if (numeroDaTurma >= 0 && numeroDaTurma < Turma.listaDeTurmas.size()) {
+                Professor.listaDeProfessores.get(numeroDoProfessor).setTurma(Turma.listaDeTurmas.get(numeroDaTurma));
+                System.out.println("Professor transferido com sucesso");
+
             } else {
-                System.out.println("Número de professor inválido. Tente novamente.");
+                System.out.println("Número de turma inválido. Tente novamente.");
+
             }
         } else {
-            System.out.println("Número de turma inválido. Tente novamente.");
+            System.out.println("Número de professor inválido. Tente novamente.");
         }
-}
+
+        System.out.println("Deseja trocar mais algum professor de turma? (s/n)");
+        String escolha = scannerString.nextLine();
+
+        if (escolha.equals("s") || escolha.equals("S")) {
+            trocarProfessorDaTurma();
+        } else {
+            Menu.menuPrincipalDiretor();
+        }
+    }
 
 }
-
