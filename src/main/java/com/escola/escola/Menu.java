@@ -2,6 +2,7 @@ package com.escola.escola;
 
 import java.util.Scanner;
 
+import com.escola.escola.entities.Aluno;
 import com.escola.escola.entities.Diretor;
 import com.escola.escola.entities.Professor;
 import com.escola.escola.entities.Turma;
@@ -19,8 +20,9 @@ public class Menu {
         while (escolha != 9) {
 
             System.out.println("Bem vindo, Diretor(a)! \n O que deseja fazer?");
-            System.out.println(
-                    "1- Adicionar professor\n2- Editar Professor \n3- Listar professores \n4- Adicinar Turma \n5- Editar Turma \n6- Excluir Turma \n7- Ver Melhores Alunos \n8- Sair");
+            System.out.println("1- Adicionar professor\n2- Editar Professor \n3- Listar professores");
+            System.out.println("4- Excluir professor \n5- Ver Ranking de Professor \n6- Ver melhores alunos");
+            System.out.println("7-Adicinar Turma \n8- Editar Turma \n9- Listar Turmas \n10 - Excluir Turma \n11- Sair");
 
             escolha = scanner.nextInt();
 
@@ -35,7 +37,6 @@ public class Menu {
 
                 case 3:
                     Diretor.listarProfessores();
-
                     try {
                         Thread.sleep(6 * 1000);
                         System.out.println("Aperte V para voltar:");
@@ -80,6 +81,22 @@ public class Menu {
 
                 case 9:
                     Turma.listarTurmasExistentes();
+                    try {
+                        Thread.sleep(6 * 1000);
+                        System.out.println("Aperte V para voltar:");
+                        String cons = scannerString.nextLine();
+            
+                        if (cons.equals("V") || cons.equals("v")) {
+                            Menu.menuPrincipalDiretor();
+                        }
+                        while (!(cons.equals("V") || cons.equals("v"))) {
+                            System.out.println("opção inválida");
+                            Diretor.listarProfessores();
+                        }
+                        // Converter minutos em milissegundos e fazer o programa dormir
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
 
                     break;
                 case 10:
@@ -103,11 +120,11 @@ public class Menu {
     public static void menuPrincipalProf() {
         int escolha = 0;
 
-        while (escolha != 5) {
+        while (escolha != 9) {
 
             System.out.println("Bem vindo, Professor(a)! \n O que deseja fazer?");
             System.out.println(
-                    "1- Adicinar Aluno \n2- Editar Aluno \n3- Excluir Aluno \n4- Listar suas Turmas \n5- Sair");
+                    "1- Adicinar Aluno \n2- Editar Aluno \n3- Excluir Aluno \n4- Listar todos os alunos \n5-Adicionar notas dos alunos \n6- Ver status dos alunos \n7- Ver ficha completa de um aluno \n8- Listar suas Turmas \n9- Sair");
             escolha = scanner.nextInt();
 
             switch (escolha) {
@@ -124,10 +141,31 @@ public class Menu {
                     break;
 
                 case 4:
+                    Professor.listarAlunos();
+                    break;
+
+
+                case 5:
+                    Professor.adicionarNotas();
+                    break;
+
+                case 6:
+                    Professor.imprimirStatusDosAlunos();
+                    break;
+
+                case 7:
+                    Professor.listarAlunos();
+                    System.out.println("Qual número do aluno que deseja ver?");
+                    int aluno = scanner.nextInt();
+                    Aluno.verFichaCompleta(aluno);
+
+                    break;
+
+                case 8:
                     Professor.listarTurma();
                     break;
 
-                case 5:
+                case 9:
                     System.out.println("Saindo do Sistema");
                     Login.inicio();
                     break;

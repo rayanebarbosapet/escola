@@ -7,7 +7,6 @@ import com.escola.escola.Menu;
 public class Diretor extends Funcionario {
     private static Scanner scannerString = new Scanner(System.in);
     private static Scanner scannerInt = new Scanner(System.in);
-    private static int numeroDoProfessor;
 
     public static void adicinarProfessor() {
         String nome;
@@ -41,7 +40,25 @@ public class Diretor extends Funcionario {
         for (int i = 0; i < Professor.listaDeProfessores.size(); i++) {
             System.out.println(i + " - " + Professor.listaDeProfessores.get(i).getNome() + " - "
                     + Professor.listaDeProfessores.get(i).getTurma().getNome());
+
         }
+
+        // try {
+        //     Thread.sleep(6 * 1000);
+        //     System.out.println("Aperte V para voltar:");
+        //     String cons = scannerString.nextLine();
+
+        //     if (cons.equals("V") || cons.equals("v")) {
+        //         Menu.menuPrincipalDiretor();
+        //     }
+        //     while (!(cons.equals("V") || cons.equals("v"))) {
+        //         System.out.println("opção inválida");
+        //         Diretor.listarProfessores();
+        //     }
+        //     // Converter minutos em milissegundos e fazer o programa dormir
+        // } catch (InterruptedException e) {
+        //     e.printStackTrace();
+        // }
 
     }
 
@@ -76,34 +93,31 @@ public class Diretor extends Funcionario {
         int numeroDoProfessor;
         System.out.println("Informe o número do professor que deseja excluir: ");
         numeroDoProfessor = scannerInt.nextInt();
-        for (int i = 0; i < Professor.listaDeProfessores.size(); i++) {
-            if (i == numeroDoProfessor) {
-                Professor.listaDeProfessores.remove(numeroDoProfessor);
-            }
-
-        }
+        Professor.listaDeProfessores.remove(numeroDoProfessor);
 
         System.out.println("-----LISTA ATUALIZADA-----");
-
         listarProfessores();
 
-        try {
-            Thread.sleep(6 * 1000);
-            System.out.println("Aperte V para voltar:");
-            String cons = scannerString.nextLine();
+        // try {
+        //     Thread.sleep(3 * 1000);
+        //     System.out.println("Aperte V para voltar:");
+        //     String cons = scannerString.nextLine();
 
-            if (cons.equals("V") || cons.equals("v")) {
-                Menu.menuPrincipalDiretor();
-            }
-            while (!(cons.equals("V") || cons.equals("v"))) {
-                System.out.println("opção inválida");
-                Diretor.listarProfessores();
-            }
-            // Converter minutos em milissegundos e fazer o programa dormir
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
+        //     if (cons.equals("V") || cons.equals("v")) {
+        //         Menu.menuPrincipalDiretor();
+        //     }
+        //     while (!(cons.equals("V") || cons.equals("v"))) {
+        //         System.out.println("opção inválida");
+        //         System.out.println("Aperte V para voltar:");
+        //     }
+        //     // Converter minutos em milissegundos e fazer o programa dormir
+        // } catch (InterruptedException e) {
+        //     e.printStackTrace();
+        // }
+
+         }
+
+        
 
     public static void adicinarTurma() {
         String nome;
@@ -141,9 +155,9 @@ public class Diretor extends Funcionario {
         System.out.println("Turma editada com sucesso");
         System.out.println("Deseja editar outra turma? (s/n)");
         String escolha = scannerString.nextLine();
-        if(escolha.equals("s" )|| escolha.equals("S")){
+        if (escolha.equals("s") || escolha.equals("S")) {
             excluirTurma();
-        } else{
+        } else {
             Menu.menuPrincipalDiretor();
         }
     }
@@ -159,9 +173,9 @@ public class Diretor extends Funcionario {
         System.out.println("Turma excluída com sucesso");
         System.out.println("Deseja excluir outra turma? (s/n)");
         String escolha = scannerString.nextLine();
-        if(escolha.equals("s" )|| escolha.equals("S")){
+        if (escolha.equals("s") || escolha.equals("S")) {
             excluirTurma();
-        } else{
+        } else {
             Menu.menuPrincipalDiretor();
         }
     }

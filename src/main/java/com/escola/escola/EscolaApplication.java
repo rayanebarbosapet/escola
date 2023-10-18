@@ -127,13 +127,13 @@ public class EscolaApplication {
 		Aluno.listaDeAluno.add(aluno12);
 
 
-		Diretor.verDesempenhoProfessor();
+		//Diretor.verDesempenhoProfessor();
 
 		//Turma.listaReorganizada();
 
 		//Login.loginDeAlunos();
 		
-		//Login.inicio();
+		Login.inicio();
 		//Diretor.adicinarProfessor();
 
 		

@@ -47,14 +47,10 @@ public class Aluno extends Pessoa {
         }
     }
 
-    public static void inserirEndereco() {
+    public static void inserirEndereco(int numeroDoAluno) {
 
         Scanner sc = new Scanner(System.in);
-        Scanner sc2 = new Scanner(System.in);
-
-        Professor.listarAlunos();
-        System.out.println("Qual aluno deseja editar?");
-        int numeroDoAluno = sc2.nextInt();
+        
 
         System.out.println("Informe seu cep:");
         String cep = sc.nextLine();
@@ -67,14 +63,13 @@ public class Aluno extends Pessoa {
         System.out.println("Cidade: " + listaDeAluno.get(numeroDoAluno).getEndereco().getLocalidade());
         System.out.println("Estado: " + listaDeAluno.get(numeroDoAluno).getEndereco().getUf());
 
-        System.out.println("Número: ");
+        System.out.println("Informe o Número: ");
         String numero = sc.nextLine();
         listaDeAluno.get(numeroDoAluno).getEndereco().setNumero(numero);
 
-        System.out.println("Complemento: ");
+        System.out.println("Informe o Complemento: ");
         String complemento = sc.nextLine();
         listaDeAluno.get(numeroDoAluno).getEndereco().setComplemento(complemento);
-        sc.close();
 
     }
 
