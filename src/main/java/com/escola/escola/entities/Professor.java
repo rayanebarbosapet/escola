@@ -41,6 +41,8 @@ public class Professor extends Funcionario {
         for (int i = 0; i < Aluno.listaDeAluno.size(); i++) {
             System.out.println(i + "- " + Aluno.listaDeAluno.get(i).getNome());
         }
+
+        System.out.println("-----------------------------------");
     }
 
     public static void adicionarAluno() {
@@ -58,6 +60,7 @@ public class Professor extends Funcionario {
         novoAluno.setTurma(Turma.listaDeTurmas.get(numeroDaTurma));
         Aluno.listaDeAluno.add(novoAluno);
 
+        System.out.println("Aluno adicionado com sucesso!");
         System.out.println("Deseja adicionar outro aluno? s/n");
         String escolha = scannerString.nextLine();
 
@@ -78,11 +81,11 @@ public class Professor extends Funcionario {
 
         numeroDoAluno = scannerInt.nextInt();
 
-        while (escolha != 4) {
+        while (escolha != 6) {
 
             System.out.println("O que deseja fazer?");
             System.out.println(
-                    "1- Editar nome do aluno \n2- Trocar turma do aluno \n3- Adicionar notas do aluno \n4- Adicionar faltas do aluno \n5- Adicionar nota de recuperação \n6- Ver status dos alunos \n7- Voltar para o menu principal");
+                    "1- Editar nome do aluno \n2- Trocar turma do aluno \n3- Adicionar faltas do aluno \n4- Adicionar nota de recuperação \n5- Inserir endereço do aluno \n6- Voltar para o menu principal");
             escolha = scannerInt.nextInt();
 
             switch (escolha) {
@@ -95,22 +98,27 @@ public class Professor extends Funcionario {
                     break;
 
                 case 3:
-                    adicionarNotas();
-                    break;
-
-                case 4:
                     adicionarFaltas();
                     break;
 
-                case 5:
+                case 4:
                     adicionarNotaDeRecuperacao();
                     break;
 
-                case 6:
-                    imprimirStatusDosAlunos();
+                case 5:
+                    Aluno.inserirEndereco(numeroDoAluno);
+                    System.out.println("Deseja editar outro aluno? s/n");
+                    String opcao = scannerString.nextLine();
+
+                    if (opcao.equals("s") || opcao.equals("S")) {
+                        editarAluno();
+                    } else {
+                        listarAlunos();
+                        Menu.menuPrincipalProf();
+                    }
                     break;
 
-                case 7:
+                case 6:
                     Menu.menuPrincipalProf();
                     break;
 
@@ -133,13 +141,29 @@ public class Professor extends Funcionario {
 
         }
 
+        System.out.println("Aluno excluído com sucesso!");
+        System.out.println("Deseja excluir outro aluno? s/n");
+        String escolha = scannerString.nextLine();
+
+        if (escolha.equals("s")) {
+            excluirAluno();
+        } else {
+            listarAlunos();
+            Menu.menuPrincipalProf();
+        }
+
     }
 
     public static void listarTurma() {
-
-        // etodo que olha o numero do index do professor e o da turma ; pegaria o index
-        // da turma e acharia os alunos
-        System.out.println(Turma.listaDeTurmas);
+        System.out.println("Em construção");
+        Menu.menuPrincipalProf();
+        // System.out.println("Estas são as suas turmas:");
+        // for(int i = 0; i < Turma.listaDeTurmas.size(); i++){
+        // if(Turma.listaDeTurmas.get(i) ==
+        // Professor.listaDeProfessores.get(i).getTurma()){
+        // System.out.println(Turma.listaDeTurmas.get(i).getNome());
+        // }
+        // }
     }
 
     public static void trocarNomeDoAluno() {
@@ -147,6 +171,18 @@ public class Professor extends Funcionario {
         System.out.println("Qual o novo nome?");
         novoNome = scannerString.nextLine();
         Aluno.listaDeAluno.get(numeroDoAluno).setNome(novoNome);
+        System.out.println(Aluno.listaDeAluno.get(numeroDoAluno).getNome());
+
+        System.out.println("Nome do aluno editado com sucesso!");
+        System.out.println("Deseja editar outro aluno? s/n");
+        String escolha = scannerString.nextLine();
+
+        if (escolha.equals("s")) {
+            editarAluno();
+        } else {
+
+            Menu.menuPrincipalProf();
+        }
 
     }
 
@@ -156,11 +192,29 @@ public class Professor extends Funcionario {
         System.out.println("Para qual turma deseja mudar  aluno?");
         numeroDaNovaTurma = scannerInt.nextInt();
         Aluno.listaDeAluno.get(numeroDoAluno).setTurma(Turma.listaDeTurmas.get(numeroDaNovaTurma));
+        System.out.println("Aluno: " + Aluno.listaDeAluno.get(numeroDaNovaTurma).getNome()
+                + " |Nova Turma: " + Aluno.listaDeAluno.get(numeroDaNovaTurma).getTurma().getNome());
+
+        System.out.println("Aluno movido de turma com sucesso!");
+        System.out.println("Deseja editar outro aluno? s/n");
+        String escolha = scannerString.nextLine();
+
+        if (escolha.equals("s")) {
+            editarAluno();
+        } else {
+            Menu.menuPrincipalProf();
+        }
+
     }
 
     public static void adicionarNotas() {
+
         Double nota1;
         Double nota2;
+
+        listarAlunos();
+        System.out.println("Qual o número do aluno que deseja adicionar nota?");
+        int numeroDoAluno = scannerInt.nextInt();
 
         System.out.println("Informe nota 01:");
         nota1 = scannerDouble.nextDouble();
@@ -169,6 +223,16 @@ public class Professor extends Funcionario {
         System.out.println("Informe nota 02:");
         nota2 = scannerDouble.nextDouble();
         Aluno.listaDeAluno.get(numeroDoAluno).setNota2(nota2);
+
+        System.out.println("Notas adicionadas com sucesso!");
+        System.out.println("Deseja adicionar a nota de mais algum aluno?(s/n)");
+        String escolha = scannerString.nextLine();
+
+        if (escolha.equals("s") || escolha.equals("S")) {
+            adicionarNotas();
+        } else {
+            Menu.menuPrincipalProf();
+        }
     }
 
     public static void adicionarFaltas() {
@@ -177,6 +241,15 @@ public class Professor extends Funcionario {
         System.out.println("Quantas faltas deseja adicionar?");
         numeroDeFaltasAdicionais = scannerInt.nextInt();
         Aluno.listaDeAluno.get(numeroDoAluno).setNumerodeFaltas(faltasJaRegistradas + numeroDeFaltasAdicionais);
+        System.out.println("Faltas adicionadas com sucesso!");
+        System.out.println("Deseja editar outro aluno? s/n");
+        String escolha = scannerString.nextLine();
+
+        if (escolha.equals("s")) {
+            editarAluno();
+        } else {
+            Menu.menuPrincipalProf();
+        }
 
     }
 
@@ -201,6 +274,15 @@ public class Professor extends Funcionario {
                 System.out.println(
                         "A nota de recuperação é menor do que as notas registradas, portanto não será substituída");
             }
+        }
+
+        System.out.println("Deseja editar outro aluno? s/n");
+        String escolha = scannerString.nextLine();
+
+        if (escolha.equals("s")) {
+            editarAluno();
+        } else {
+            Menu.menuPrincipalProf();
         }
 
     }

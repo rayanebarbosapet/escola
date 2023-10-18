@@ -93,6 +93,7 @@ public class Login {
         Diretor.listarProfessores();
         System.out.println("Com qual perfil deseja logar?");
         numeroDoProfessor = scannerInt.nextInt();
+        indexDeRastreamento = numeroDoProfessor;
         login = Professor.listaDeProfessores.get(numeroDoProfessor).getNome();
 
         if (fazerLogin()) {
